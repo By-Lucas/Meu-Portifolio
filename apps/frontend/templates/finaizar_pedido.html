@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block 'head' %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/pagamento.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<style>
+    .con-pagamento{
+        min-height: 70vh;
+    }
+    .texto{
+        background-color: rgb(230, 208, 10);
+        border-radius: 10px;
+        border: solid white 3px;
+        color: #0c6b04;
+        height: auto;
+        align-items: center;
+        padding: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block 'titulo' %} Pagamento {% endblock %} 
+
+
+{% block 'body' %}
+<div class="container con-pagamento">
+    <div class=" col-6">
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div id="message" class="alert {{message.tags}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <h1 class="titulo_especificacao" style="font-size: 45px;">Pagina de pagamento</h1>
+        {% if user.is_authenticated %}
+        <div class="row">
+            <div class="col-sm-9">
+                <h3 class="texto">Números: <strong style="width: 70px; font-size: 27px;" class="text-primary" >{{itens.numeros_comprados}}</strong></h3>
+              <div class="row">
+                <div class="col-8 col-sm-5">
+                    <h3 class="texto">Usuario: {{itens.usuario}}</h3>
+                </div>
+                <div class="col-8 col-sm-5">
+                    <h3 class="texto">Quantidade: {{itens.quantidade}}</h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-8 col-sm-5">
+                    <h3 class="texto">Valor total: {{total}}</h3>
+                </div>
+                <div class="col-8 col-sm-5">
+                    <h3 class="texto">Data: {{itens.data_Pedido}}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+
+
+
+        <input style="border-radius: 10px; height: 45px; text-align: center;font-size: 35px ; margin-bottom: 10px; font-size:22px; background-color: #ffffff;" 
+                class="col-md-1 tex" 
+                type="number" 
+                id="value" min="1.0" 
+                value="{{ total }}" step=".01" disabled>
+
+        <button style="border-radius: 10px; margin-bottom: 10px; font-size:20px;" class="btn btn-primary" id="btnSubmit">Gerar cobrança</button>
+        <br>
+        
+        <!--Div do QR Code-->
+        <div class="row align-items-end">
+            <div class="col-sm col-md-3">
+                <div style="border-radius: 10px; align-items: center; text-align: center; background-color: #ffffff;" id="change">
+                </div>
+            </div>
+            
+            
+            <div class="col-sm col-md-5">
+                <h4 class="informacoes_imoveis">Copie o Código do pix para pagar</h4>
+                
+                <div id="clipboardExample1"></div>
+                <div class="mt-3">
+                    <button type="button" class="btn btn-info btn-clipboard" data-clipboard-action="copy" data-clipboard-target="#clipboardExample1">
+                        Cópiar
+                    </button> 
+                    <!--
+                    <button type="button" class="btn btn-success btn-clipboard" data-clipboard-action="cut" data-clipboard-target="#clipboardExample1">
+                        Cortar
+                    </button> 
+                    -->
+                </div>
+            </div>
+        </div>
+    <br>
+</div>
+{% endif %}
+{% endblock 'body' %}
+
+
+{% block js %}
+<script>
+    /* OCULAR BOTAO NA TELA */
+    document.getElementById('btnSubmit').style.display = 'none';
+    /* Aqui é a função que gera o QR code automaticamente após
+    a contagem de 10000 milissegundos(10 segundos) acima*/
+    $(document).ready(() => {
+        let cnt = 0
+        $("#btnSubmit").click(() => {
+            $.ajax({
+                url: "{% url 'api-pix:charges' %}",
+                method: "POST",
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({
+                    value: $("#value").val()
+                })
+            })
+            .done((response) => {
+                $(`<img src='data:image/png;base64, ${response.qrcode.image}'>`).appendTo('#change');
+                $(`<input type="text" class="form-control" value="${response.qrcode.key}">`).appendTo('#clipboardExample1');
+                let checker = setInterval(() => {
+                    $.ajax({
+                        url:`/api-pix/v1/charges/${response.txid}/status/`,
+                        method: "GET"
+                    }).done((data) => {
+                        if (data.status == "PAID"){
+                            $(`<h2>Pagamento aprovado!</h2>`).appendTo('#change');
+                            clearInterval(checker);
+                        }
+                    })
+                }, 1000)
+            })
+            .fail((jqXHR, textStatus, errorThrown) => {
+                console.log(errorThrown,textStatus,jqXHR)
+            });
+        }); 
+    });
+</script>
+{% endblock js %}

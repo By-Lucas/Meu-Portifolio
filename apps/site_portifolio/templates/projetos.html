@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/projetos.css' %}">
+{% endblock %}
+
+{% block titulo %}
+  Projetos
+{% endblock %}
+
+{% block conteudo %}
+  <main>
+    <main>
+      <div class="titulo-bg" id="home">
+        <div class="titulo container">
+          <p class="font-2-l-b cor-2">Veja minhas tecnologias</p>
+          <h1 class="font-1-xxl cor-0">Meus projetos<span class="cor-p1">.</span></h1>
+        </div>
+      </div>
+    
+    <section id="projetos">
+      <div class="container-fluid">
+        {% for projeto in projetos%}
+          <div class="projetos">
+              <div class="projetos-cards">
+                  <div class="projetos-card">
+                    <a href="{{projeto.link_github}}" target="_blank">
+                      <img style="border-radius: 15px 15px 5px 5px;" src="{{projeto.img_projeto.url}}" alt="">
+                    </a>
+                      <div class="projeto-card-desc">
+                          <div class="projeto-card-desc-esquerda">
+                              <h3 class="text-white">{{projeto.nome}}</h3>
+                              <p class="text-white"> {{projeto.descricao}}</p>
+
+                              <div class="projeto-card-desc-categorias">
+                                  <div class="projeto-card-desc-categoria flutter">Python</div>
+                              </div>
+                              <div class="projeto-card-desc-categorias">
+                                <div class="projeto-card-desc-categoria flutter">Django</div>
+                              </div>
+                              <div class="projeto-card-desc-categorias">
+                                <div class="projeto-card-desc-categoria flutter">JS</div>
+                              </div>
+
+                          </div>
+                          <div class="projeto-card-desc-direita">
+                              <div class="projeto-card-desc-direita-icons">
+                                  <a href="{{projeto.link_github}}" target="_blank"><i class="fab fa-github"></i></a>
+                              </div>
+                          </div>
+                      </div> 
+                  </div>
+                  
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </section>
+</main>
+
+<script type="text/javascript">
+        window.onload = function() {
+            document.querySelector(".menu_mobile").addEventListener("click", function(){
+                if(document.querySelector(".menu nav ul").style.display == "flex") {
+                    document.querySelector(".menu nav ul").style.display = "none";
+                } else {
+                    document.querySelector(".menu nav ul").style.display = "flex";
+                }
+            });
+        };
+    </script>
+
+{% endblock %}

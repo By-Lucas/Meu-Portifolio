@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+<style>
+  .container2{
+		min-height: 70vh ;
+	}
+
+  .a_btn{
+		width: 100%;
+		min-height: 100%;
+	    padding: 0px;
+	    margin: 0px;
+	    font-weight: bold;
+	}
+	.a_btn:hover{
+		background: linear-gradient(100deg, #35ecb5, #006d6e);
+    	color: white;
+	}
+</style>
+
+{% block 'body' %}
+<div class="container container2">
+  <h1 class="titulo_especificacao" >HISTÓRICOS PAGAMENTO</h1>
+  <div class=" col-5">
+    {% csrf_token %}
+      {{ message }}
+      <br>
+      {% if messages %}
+          {% for message in messages %}
+              <div class="alert {{message.tags}}">
+                  {{message}}
+              </div>
+          {% endfor %}
+      {% endif %}
+    </div>
+
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Nº</th>
+          <th scope="col">USUARIO</th>
+          <th scope="col">TXID</th>
+          <th scope="col">VALOR</th>
+          <th scope="col">STATUS</th>
+          <th scope="col">CRIADO</th>
+          <th scope="col">ATUALIZADO</th>
+        </tr>
+      </thead>
+      {% for historico in charges %}
+        {% if historico.user.id == user_id  %}
+          {% if historico.status == 'PAID' %}
+            <tbody>
+              <tr>{{itens.numeros_comprados}}
+                <th scope="row">{{ historico.id }}</a></th>
+                <td class="a_btn"><a class="btn btn-success" >{{historico.user}}</td>
+                <td>{{historico.txid }}</td>
+                <td>{{historico.value }}</td>
+                {% if historico.status == 'AGUARDANDO' %}
+                <td><a class="btn btn-warning" >{{historico.status}}</a></td>
+                {% else %}
+                <td class="btn btn-success"><a class="btn btn-success" >{{historico.status}}</a></td>
+                {% endif %}
+                <td>{{historico.created}}</td>
+                <td>{{historico.updated}}</td>
+              </tr>
+            </tbody>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </table>
+</div>
+
+
+{% endblock %}

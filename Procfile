@@ -1,0 +1,1 @@
+web gunicorn portifolio_tk.wsgi --log-file -

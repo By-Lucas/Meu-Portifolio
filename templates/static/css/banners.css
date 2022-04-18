@@ -1,0 +1,10 @@
+
+.banner-esquerda {
+    flex: 1;
+}
+
+.banner-esquerda span {
+    font-size: 2.5rem;
+    animation: 3s ease-in 1s infinite reverse both running bye;
+    display: inline-block;
+}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block 'body' %}
+
+<div class="container container2" >
+    <h1>MEU HISTÓRICOS</h1>
+    
+    <div class=" col-5">
+      {% csrf_token %}
+        {{ message }}
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{message.tags}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+      </div>
+
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Usuário</th>
+            <th scope="col">TXID</th>
+            <th scope="col">VALOR</th>
+            <th scope="col">STATUS</th>
+            <th scope="col">CRIADO</th>
+            <th scope="col">ATUALIZADO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">{{ status.id }}</th>
+            <td>{{status.user }}</td>
+            <td>{{status.txid }}</td>
+            <td>{{status.value }}</td>
+            <td>{{status.status}}</td>
+            <td>{{status.created}}</td>
+            <td>{{status.updated}}</td>
+            
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+
+{% endblock %}

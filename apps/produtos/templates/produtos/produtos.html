@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% include '_cabecalho.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/produtos.css' %}">
+{% endblock %}
+
+{% block titulo %}
+  Projetos
+{% endblock %}
+
+{% block conteudo %}
+
+<div id="bicicletas">
+  <main>
+    <div class="titulo-bg" id="home">
+      <div class="titulo container">
+        <p class="font-2-l-b cor-2">Escolha a melhor para você</p>
+        <h1 class="font-1-xxl cor-0">Nossos produtos<span class="cor-p1">.</span></h1>
+      </div>
+    </div>
+
+    {% for produto in produtos %}
+      {% if produto.id == 1 %}
+        <div class="bicicletas-bg " style="margin: 10px; border-radius: 10px;"> <!-- Background PRETO-->
+          <div class="bicicletas container">
+            <div class="bicicletas-imagem">
+              {% if produto.produto_img %}
+                <img src="{{produto.produto_img.url}}" alt="{{produto.produto_nome}}">
+              {% else %}
+              <H1>SEM IMAGEM</H1>
+              {% endif %}
+              <span class="font-2-m cor-0" id="home">R$ {{produto.produto_valor}}</span>
+            </div>
+            <div class="bicicletas-conteudo">
+              <h2 class="font-1-xl cor-0">{{produto.produto_nome}}</h2>
+              <p class="font-2-s cor-5">{{produto.produto_descricao}}</p>
+              <ul class="font-1-m cor-5">
+                <li>
+                  <img src="./img/icones/eletrica.svg" alt="">
+                  {% if produto.produto_status == 'D' %}
+                    Disponivel
+                  {% elif produto.produto_status == 'A' %}
+                    Atualizando
+                  {% elif produto.produto_status == 'C' %}
+                    Preenchido
+                  {% endif %}
+                </li>
+                <li>
+                  <img src="./img/icones/carbono.svg" alt="">
+                  {{produto.produto_caregoria}}
+                </li>
+                <li>
+                  <img src="./img/icones/velocidade.svg" alt="">
+                  {{produto.data_criacao}}
+                </li>
+                <li>
+                  <img src="./img/icones/rastreador.svg" alt="">
+                  R$ {{produto.produto_valor}}
+                </li>
+              </ul>
+              <a class="botao seta" href="https://sorteio-lu.herokuapp.com/" target="_blank">Mais Sobre</a>
+            </div>
+          </div>
+        </div>
+        <hr>
+        {% endif %}
+        {% endfor %}
+        <section id="projetos">
+          <div class="container">
+            {% for produto in produtos %}
+          {% if produto.id != 1 %}
+              <div class="projetos">
+                  <div class="projetos-cards">
+                      <div class="projetos-card">
+                        <a href="{% url 'produto_id' produto.id %}">
+                          <img style="border-radius: 15px 15px 5px 5px; " src="{{produto.produto_img.url}}"  alt="">
+                        </a>
+                          <div class="projeto-card-desc">
+                              <div class="projeto-card-desc-esquerda">
+                                  <h3 class="text-white">{{produto.produto_nome}}</h3>
+                                  <a class="botao_1" href="{% url 'produto_id' produto.id %}">Comprar produto</a>
+                                  <a class="icone" href="https://api.whatsapp.com/send?phone=5574981199190&text=Ola%20Lucas%2C%20tudo%20bem%3F" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                              </div>
+                          </div> 
+                      </div>
+                  </div>
+              </div>
+              {% endif %}
+              {% endfor %}
+          </div>
+      </section>
+      
+  </main>
+</div>
+{% endblock %}
