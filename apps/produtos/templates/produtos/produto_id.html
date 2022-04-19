@@ -7,112 +7,119 @@
 {% endblock %}
 
 {% block conteudo %}
+<style>
+  .titulo{
+    margin-bottom: -25px;
+  }
+  .margin_main{
+    margin-bottom: -50px;
+  }
+</style>
 <div id="bicicleta">
   <main>
     <div>
       <div class="titulo container">
-        <p class="font-2-xl cor-5">R$ {{produto.produto_valor}}</p>
-        <h1 class="font-1-xxl cor-0">{{produto.produto_nome}}<span class="cor-p1">.</span></h1>
+        <h1 class="font-1-xxl text-">{{produto.produto_nome}}<span class="cor-p1">.</span></h1>
+        <h2 class="font-1-xl" style="color: green;">R$ {{produto.produto_valor}}</h2>
       </div>
     </div>
-    <div class="bicicleta container">
-
+    <div class="bicicleta container margin_main">
       <div class="bicicleta-imagens">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
+          <div class="carousel-inner"  style="height: 540px;">
             {% for img in produto.produto_imagens.all %}
               <div class="carousel-item {% if forloop.first %} active {% endif %}" >
-                  <img class="d-block w-100"  src="{{img}}" alt="First slide">
+                <img class="d-block w-100 img-fluid"  style="height: 100%;" src="{{img}}" alt="First slide">
               </div>
             {% endfor %}
           </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+          </a>
+        </div>
       </div>
       <div class="bicicleta-conteudo">
-        <p class="font-2-l cor-5">{{produto.produto_descricao}}</p>
+        <p class="font-2-l">{{produto.produto_descricao}}</p>
         <div class="bicicleta-comprar">
           <a class="botao" href="../orcamento.html">Comprar Agora</a>
           <span class="font-1-xs cor-6"><img src="../img/icones/entrega.svg" alt=""> 7 dias de garantia</span>
-          <span class="font-1-xs cor-6"><img src="../img/icones/estoque.svg" alt=""> 50 disponíveis</span>
+          <span class="font-1-xs cor-6"><img src="../img/icones/estoque.svg" alt=""> {{produto.produto_disponiveis}} disponíveis</span>
         </div>
 
-        <h2 class="font-1-xs cor-0">Informações</h2>
+        <h2 class="font-1-xl cor-10">Informações</h2>
         <ul class="bicicleta-informacoes">
           <li>
             <img src="../img/icones/eletrica.svg" alt="">
-            <h3 class="font-1-m cor-0">Motor Elétrico</h3>
-            <p class="font-2-xs cor-5">Permite você viajar distâncias inimaginaveis com a sua bike.</p>
+            <h3 class="font-1-m cor-0">Status</h3>
+            {% if produto.produto_status == 'D' %}
+            <p class="font-2-xs cor-5">Disponível</p>
+            {% elif produto.produto_status == 'A' %}
+            <p class="font-2-xs cor-5">Em atualização</p>
+            {% elif produto.produto_status == 'C' %}
+            <p class="font-2-xs cor-5">Indisponível</p>
+            {% endif %}
           </li>
           <li>
             <img src="../img/icones/velocidade.svg" alt="">
-            <h3 class="font-1-m cor-0">45 km/h</h3>
-            <p class="font-2-xs cor-5">A mais rápida bicicleta elétrica disponível hoje no mercado.</p>
+            <h3 class="font-1-m cor-0">Pagamento</h3>
+            {% if produto.pagamento_tempo == 'M' %}
+            <p class="font-2-xs cor-5">Mensal</p>
+            {% elif produto.pagamento_tempo == 'T' %}
+            <p class="font-2-xs cor-5">Trimestral</p>
+            {% elif produto.pagamento_tempo == 'A' %}
+            <p class="font-2-xs cor-5">Anual</p>
+            {% elif produto.pagamento_tempo == 'V' %}
+            <p class="font-2-xs cor-5">Vitalício</p>
+            {% endif %}
           </li>
           <li>
             <img src="../img/icones/rastreador.svg" alt="">
-            <h3 class="font-1-m cor-0">Rastreador</h3>
-            <p class="font-2-xs cor-5">Rastreador e sistema anti-furto para garantir o seu sossego.</p>
+            <h3 class="font-1-m cor-0">Categoria</h3>
+            <p class="font-2-xs cor-5">{{produto.produto_caregoria}}</p>
           </li>
           <li>
             <img src="../img/icones/carbono.svg" alt="">
-            <h3 class="font-1-m cor-0">Fibra de Carbono</h3>
-            <p class="font-2-xs cor-5">Maior proteção possível para a sua Bikcraft com fibra de carbono.</p>
+            <h3 class="font-1-m cor-0">Suporte</h3>
+            <p class="font-2-xs cor-5">{{produto.produto_dia_suporte}}</p>
           </li>
-        </ul>
-        <h2 class="font-1-xs cor-0">Ficha Técnica</h2>
-        <ul class="bicicleta-ficha font-2-s cor-4">
-          <li>Peso <span>9 kg</span></li>
-          <li>Altura <span>60 cm</span></li>
-          <li>Largura <span>120 cm</span></li>
-          <li>Profundidade <span>10 cm</span></li>
-          <li>Marchas <span>16</span></li>
-          <li>Roda <span>29</span></li>
         </ul>
       </div>
     </div>
   </main>
 
-  <article class="bicicletas-lista container">
-    <h2 class="font-1-xxl">escolha a sua<span class="cor-p1">.</span></h2>
-
-    <ul>
-      <li>
-        <a href="./nimbus.html">
-          <img src="../img/bicicletas/nimbus.jpg" alt="Bicicleta preta">
-          <h3 class="font-1-xl">Nimbus Stark</h3>
-          <span class="font-2-m cor-8">R$ 4999</span>
-        </a>
-      </li>
-      <li>
-        <a href="./nebula.html">
-          <img src="../img/bicicletas/nebula.jpg" alt="Bicicleta preta">
-          <h3 class="font-1-xl">Nebula Cosmic</h3>
-          <span class="font-2-m cor-8">R$ 3999</span>
-        </a>
-      </li>
-    </ul>
-  </article>
-
-  <article class="seguro-bg">
-    <div class="seguro container">
-      <div class="seguro-imagem">
-        <img src="../img/fotos/seguros.jpg" alt="Pessoa parada em cima de uma bicicleta.">
-      </div>
-      <div class="seguro-conteudo">
-        <h2 class="font-1-xxl cor-0">Pedale mais tranquilo com o nosso <span class="cor-p1">seguro.</span></h2>
-        <p class="font-2-l cor-5">Inscreva-se em um dos planos do nosso seguro Bikcraft e aproveite diversos benefícios.</p>
-        <a class="botao" href="../seguros.html">Conheça Mais</a>
+  <article class="container">
+    <div class="row">
+      <div class="col-sm">
+        <ul class="bicicleta-ficha font-2-s cor-4">
+          <h2 class="font-1-xl cor-10">Passo a passo</h2>
+          <p>basta escolher qual produto deseja adquirir</p>
+          <li>1: Efetuar o cadastro no sistema <a class="text-success" href="{% url 'login' %}">"Clique aqui para se cadastrar"</a> </li>
+          <li>2: Fazer o pagamento (Pix) ou (Cartão de cédito)</li>
+          <li>3: Anexar o comprovante do produto ou pode enviar print do produto e comprovante para 74981199190</li>
+          <li>4: Dentro de 24 horas receberá o produto escolhido no email ou whatsapp</li>
+        </ul>
       </div>
     </div>
+  </article>
+
+  <article class="bicicletas-lista container">
+    <h2 class="font-1-xxl">Outros produtos<span class="cor-p1">.</span></h2>
+    <ul>
+      {% for sugestao in sugestoes %}
+      <li>
+        <a href="{% url 'produto_id' sugestao.id %}">
+          <img class="bicicletas-imagem img fluid" style="height: 300px; width: 100%;" src="{{ sugestao.produto_img.url }}" alt="Bicicleta preta">
+          <h3 class="font-1-xl">{{sugestao.produto_nome}}</h3>
+          <span class="font-2-m cor-8">R$ {{sugestao.produto_valor}}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
   </article>
 
 </div>

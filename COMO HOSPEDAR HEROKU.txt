@@ -16,7 +16,7 @@ heroku login
 COMANDO PARA CRIAR SESSÃO
 O nome tk-technology tem que ser diferente do que ja deve ter
 
-heroku create tk-technology --buildpack heroku/python
+heroku create tk-global-technology --buildpack heroku/python
 
 ULTIMO COMANDO QUE É PARA FAZER A PUBLICAÇÃO
 git push heroku master

@@ -1,3 +1,4 @@
+from tkinter.tix import Tree
 from django.db import models
 
 class linguagens_mais_usadas(models.Model):

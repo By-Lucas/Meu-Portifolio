@@ -40,6 +40,13 @@ class Produto(models.Model):
     choices_status = (('D', 'Disponivel'),
                     ('A', 'Atualizando'),
                     ('C', 'Preenchido'))
+    
+    pagamento_tempo = (
+        ('M', 'Mensal'),
+        ('T', 'Trimestral'),
+        ('A', 'Anual'),
+        ('V', 'Vitalicio')
+    )
 
     usuario_produto = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     produto_nome = models.CharField(max_length=100, blank=False, null=False)
@@ -47,6 +54,7 @@ class Produto(models.Model):
     produto_descricao = models.TextField(max_length=500, null=False, blank=False)
     produto_img = models.ImageField(upload_to='img', null=True, blank=True)
     produto_imagens = models.ManyToManyField(Imagem)
+    pagamento_tempo = models.CharField(choices=pagamento_tempo, max_length=30, null=True, blank=True)
     produto_pix = models.ImageField(upload_to='img', null=True, blank=True)
     produto_valor = models.DecimalField(max_digits=8, decimal_places=2)
     produto_dia_suporte = models.CharField(max_length=100, null=True, blank=True)
