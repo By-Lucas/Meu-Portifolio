@@ -185,4 +185,28 @@ p.blink.mah span {
   top: 248px;
   left: 360px;
 }
-/*  */
+
+/* parte responsiva */
+
+@media (max-width: 576px) {
+  section{margin-left: 5%;}
+  aside{ width: 40px ;}
+  aside ul li a{ font-size: 12px;}
+  aside.keep.width{width: 150px;}
+  }
+
+@media (max-width: 768px) {
+  section{margin-left: 5%;}
+  aside{ width: 60px ;}
+  aside ul li a{ font-size: 13px;}
+  aside.keep.width{width: 160px;}
+  }
+
+@media (max-width: 1280) {
+  aside{ width: 65px ;}
+  section{margin-left: 7%;}
+  aside.keep.width{width: 200px;}
+
+  }
+
+
