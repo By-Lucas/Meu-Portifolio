@@ -1,9 +1,11 @@
-from multiprocessing import context
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout
-from django.contrib.messages import constants
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate,login,logout
+
+# Alertas de messagens
+from django.contrib import messages
+from django.contrib.messages import constants
 
 from .models import linguagems_progr, linguagens_mais_usadas
 from .models_2.projetos import projeto
@@ -44,12 +46,15 @@ def use_login(request):
                 user = authenticate(username=uname, password=upass)
                 if user is not None:
                     login(request,user)
-                    constants.SUCCESS(request,'Login efetuado com sucesso!!')
+                    messages.add_message(request, constants.SUCCESS ,'Login efetuado com sucesso!!')
                     return redirect('/')
+                if not uname and upass or  uname == '' and upass == '':
+                    messages.add_message(request, constants.ERROR, 'Usuário ou senha incorreto ou campos vazio!')
         else:
             fm = AuthenticationForm()
         return render(request,'login.html',{'form':fm})
     else:
+        messages.add_message(request, constants.ERROR ,'Não pode fazer o login se o usuaário já estiver logado')
         return redirect('/')
 
 def user_logout(request):

@@ -48,11 +48,16 @@
               <li class="nav-item">
                 <a href="{% url 'sobre' %}" class="nav-link">Currículo</a>
               </li>
+              {% if request.user.groups.all.0.name == 'Admin' or request.user.groups.all.0.name == 'Dono' %}
+              <li class="nav-item">
+                <a href="{% url 'admin' %}" class="nav-link">Administração</a>
+              </li>
+              {% endif %}
             </ul>
             
             <ul class="navbar-nav ml-auto ml-2">
               <li class="nav-item">
-                <a href="{% url 'login' %}" class="btn btn_cadastrar ">Cadastre-se</a>
+                <a href="{% url 'cadastro' %}" class="btn btn_cadastrar ">Cadastre-se</a>
               
               {% if user.is_authenticated %}
                 

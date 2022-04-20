@@ -9,142 +9,103 @@
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/novo_usuario.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="{% static 'css/modal-login.css' %}">
     <script src="{% static 'js/modal-login.js' %}"></script>
- 
-    
+
     <title>{% block title %} TK Global Admin {% endblock %}</title>
     
 </head>
 <body>
 
     
-		<div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar">
-				<div class="p-4 pt-5">
-		  		<a href="{% url 'login' %}" >
-            <img class="img logo rounded-circle mb-5" src="{% static 'images/img.png' %}" alt="">
+  <header>
+    <span class="menu"><i class="material-icons">|||||</i></span>
+  </header>
+  <section class="main">
+    <aside class="keep">
+      <ul>
+        <li>
+          <a href="{% url 'admin' %}">
+            <span><i class="fas fa-facebook">Home</i></span>
+             
+            <span class="notif red">1</span>
           </a>
-
-          {% if user.is_authenticated %}
-          <p class="usuario">Usuário: <span class="text-success"> {{ usuario.funcionario.nome }}
-            {{ usuario.funcionario.sobrenome }}
-          </span></p>
-          {% else %}
-          <p>{{ usuario.funcionario.sobrenome }}</p>
-          {% endif %}
-
-	        <ul class="list-unstyled components mb-5">
-	          <li class="active">
-	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-	            <ul class="collapse list-unstyled" id="homeSubmenu">
-                {% if usuario.funcionado.empresa %}
-                  <li>
-                      <a href="#">Editar empresa</a>
-                  </li>
-                {% else %}
-                  <li>
-                    <a href="#">Criar empresa</a>
-                  </li>
-                {% endif %}
-                <li>
-                    <a href="#">Home 2</a>
-                </li>
-                <li>
-                    <a href="#">Home 3</a>
-                </li>
-	            </ul>
-	          </li>
-	          <li>
-	              <a href="#">Funcionários</a>
-	          </li>
-	          <li>
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Opções</a>
-              <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Page 1</a>
-                </li>
-                <li>
-                    <a href="#">Page 2</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-              </ul>
-	          </li>
-	          <li>
-              <a href="#">Portfolio</a>
-	          </li>
-	          <li>
-              <a href="#">Contatos</a>
-	          </li>
-	        </ul>
-
-	        <div class="footer">
-	        	<p><!-- Link para Colorlib não pode ser removido. O modelo está licenciado sob CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                    Todos os direitos reservados. <br>
-                    Desenvolvedor <i class="icon-heart" aria-hidden="true"></i>: <a href="" target="_blank">Lucas Silva</a>
-                    <!-- Link para Colorlib não pode ser removido. O modelo está licenciado sob CC BY 3.0 -->
-                </p>
-	        </div>
-
-	      </div>
-    	</nav>
-        
-        <!-- pagina Content  -->
-      <div id="content" class="p-4 p-md-5">
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-
-            
-            <button type="button" id="sidebarCollapse" class="btn btn-outline-primary">
-              <i class="fa fa-bars"></i>
-              <span class="sr-only">Toggle Menu</span>
-            </button>
-            
-            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-bars"></i>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'home' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sobre</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contatos</a>
-                </li>
-                <li class="nav-item">
-                {% if user.is_authenticated %}
-                    <a style="margin-left: 30px;" class="btn btn-outline-danger" href="{% url 'sair' %}">Logout</a>
-                {% else %}
-                <label class="btn btn-outline-success" for="dialog_state">Login</label>
-
-                   
-                {% endif %}
-              </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        {% block main %} {% endblock %}
+        </li>      
+        <li>
+          <a href="{% url 'novo_usuario' %}">
+            <span><i class="material-icons">Novo Usuário</i></span>
+              App Menu
+            <span class="notif yellow">2</span>
+          </a>
+        </li>
+        <li>
+          <a href="/">
+            <span><i class="material-icons">event</i></span>
+             event
+            <span class="notif green">6</span>
+          </a>
+        </li>      
+        <li>
+          <a href="/">
+            <span><i class="material-icons">local_offer</i></span>
+             Offer
+          </a>
+        </li>
+        <li>
+          <a href="/">
+            <span><i class="material-icons">photo</i></span>
+             photo
+          </a>
+        </li>      
+        <li>
+          <a href="/">
+            <span><i class="material-icons">import_contacts</i></span>
+             contacts
+          </a>
+        </li>
+        <li>
+          <a href="/">
+            <span><i class="material-icons">event</i></span>
+             event
+          </a>
+        </li>      
+        <li>
+          <a href="/">
+            <span><i class="material-icons">restaurant_menu</i></span>
+             Restaurant
+          </a>
+        </li>      
+        <li>
+          <a href="/">
+            <span><i class="material-icons">textsms</i></span>
+             textsms
+          </a>
+        </li>      
+        <li>
+          <a href="/">
+            <span><i class="material-icons">receipt</i></span>
+             Receipt
+          </a>
+        </li>
+      </ul>
+    </aside>
+    <article>
+      <div class="container-fluid">
+      
+      {% block admin %} {% endblock %}
     </div>
-</div>
+
+    </article>
+  </section>
+  
 
 
 <!-- MODAL DE LOGIN ---------------------------------------->
+<!--
 <input type="checkbox" name="dialog_state" id="dialog_state" class="dialog_state">
 <div id='dialog'>
   <label id="dlg-back" for="dialog_state"></label>
@@ -157,7 +118,7 @@
     </div>
     <div id='dlg-prompt'>
 
-      <form   method="POST" action="{% url 'logar' %}"> {% csrf_token %}
+      <form   method="POST" action="{% url 'login' %}"> {% csrf_token %}
         <br>
         <div class="form-row align-items-center">
           <div class="form-group col-md-8">
@@ -186,6 +147,7 @@
     </div>
   </div>
 </div>
+-->
 <!-- FIM DO MODAL DE LOGIN ---------------------------------------->
   
 
@@ -193,5 +155,12 @@
     <script src="{% static 'js/popper.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    <script>
+      $(document).ready(function(){
+        $(".menu").click(function(){
+            $(".keep").toggleClass("width");
+        });
+    });
+    </script>
 </body>
 </html>

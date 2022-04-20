@@ -5,14 +5,15 @@ from django.contrib.auth.models import User, Group
 from django.contrib import messages
 from django.contrib.messages import constants
 
-def cadastro(request):
+
+def novo_usuario(request):
     if request.method == 'GET':
         # Se o ususario já estiver logado, será direcionado para pagina principal
-        if request.user.is_authenticated:
-            messages.add_message(request, constants.ERROR, 'Não pode fazer cadastro se estiver logado')
-            return redirect('/')
-        return render(request, 'cadastro.html')
-    elif request.method == 'POST':
+    #    if request.user.is_authenticated:
+    #        messages.add_message(request, constants.ERROR, 'Não pode fazer cadastro se estiver logado')
+    #        return redirect('/')
+        return render(request, 'novo_usuario.html')
+    if request.method == 'POST':
         #capiturar informacoes do form 'name' no html
         username_1 = request.POST.get('username')
         nome = request.POST.get('nome')
@@ -24,14 +25,14 @@ def cadastro(request):
         # o strip() remove todos os espaços em brancos do form
         if len(username_1.strip()) == 0 or len(email.strip()) == 0 or len(senha.strip()) == 0:
             messages.add_message(request, constants.ERROR, 'Preencha todos os campos')
-            return redirect('cadastro')
+            return redirect('novo_usuario')
         # Verifica se está tentando cadastrar um usuario já existente
         user = User.objects.filter(username=username_1)
         email = User.objects.filter(email=email)
         print(user) # Exibe o nome no print se ja tiver usuario cadastrado com mesmo username
         if user.exists() or email.exists():
             messages.add_message(request, constants.ERROR, 'Já existe um usuário ou email igual cadastrado')
-            return redirect('cadastro')
+            return redirect('novo_usuario')
         try:
             user = User.objects.create_user(username=username_1,
                                             first_name=nome,
@@ -39,14 +40,9 @@ def cadastro(request):
                                             email=email, 
                                             password=senha)
             user.save()
-            # Criar junto parte de editar perfil do usuario
 
             messages.add_message(request, constants.SUCCESS, 'Cadastro realizado com sucesso')
-            return redirect('/')
+            return redirect('novo_usuario')
         except:
             messages.add_message(request, constants.ERROR, 'Erro interno do sistema')
-            return redirect('/')
-
-# Create your views here.
-def administracao(request):
-    return render(request, 'administracao.html')
+            return redirect('novo_usuario')

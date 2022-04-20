@@ -153,6 +153,18 @@
 
 <section class="caixa">
     <div class="container">
+        <div class=" col-5 text-center">
+            {{ message }}
+            <br>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {{message.tags}}">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
         <div class="row border_left">
             <div class=" coluna_tags col-sm ">
                 <h5>Informações / Compras</h5>

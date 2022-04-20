@@ -30,68 +30,55 @@
               ">
             <div class="card-body p-5 shadow-5 text-center">
               <h2 class="fw-bold mb-5">Fazer login</h2>
-              <form>
+              
                 <!-- 2 column grid layout with text inputs for the first and last names -->
-                <div class="row">
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <input name="nome" type="text" id="form3Example1" class="form-control" placeholder="Digite seu nome"/>
-                      <label class="form-label" for="form3Example1">Nome</label>
-                    </div>
+
+                <form   method="POST" action="{% url 'login' %}"> {% csrf_token %}
+                  <!-- Email input -->
+                  <div class="form-outline mb-4">
+                    <input name="username" type="text" id="form3Example3" class="form-control" placeholder="Digite seu email" />
+                    <label class="form-label" for="form3Example3">E-mail</label>
                   </div>
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <input name="sobrenome" type="text" id="form3Example2" class="form-control" placeholder="Digite seu sobrenome" />
-                      <label class="form-label" for="form3Example2">Sobrenome</label>
-                    </div>
+    
+                  <!-- Password input -->
+                  <div class="form-outline mb-4">
+                    <input name="password" type="password" id="form3Example4" class="form-control" placeholder="Digite sua senha" />
+                    <label class="form-label" for="form3Example4">Senha</label>
                   </div>
-                </div>
-  
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                  <input name="email" type="email" id="form3Example3" class="form-control" placeholder="Digite seu email" />
-                  <label class="form-label" for="form3Example3">E-mail</label>
-                </div>
-  
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                  <input name="senha" type="password" id="form3Example4" class="form-control" placeholder="Digite sua senha" />
-                  <label class="form-label" for="form3Example4">Senha</label>
-                </div>
-  
-                <!-- Checkbox -->
-                <div class="form-check d-flex justify-content-left mb-2">
-                  <input name="checado" class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                  <label class="form-check-label" for="form2Example33">
-                    Aceitar termos
-                  </label>
-                </div>
-  
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">
-                  Cadastrar
-                </button>
-  
-                <!-- Register buttons -->
-                <div class="text-center">
-                  <p>or sign up with:</p>
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-facebook-f"></i>
+    
+                  <!-- Checkbox -->
+                  <div class="form-check d-flex justify-content-left mb-2">
+                    <input name="checado" class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+                    <label class="form-check-label" for="form2Example33">
+                      Aceitar termos
+                    </label>
+                  </div>
+    
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary btn-block mb-4">
+                    Logar
                   </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-google"></i>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-twitter"></i>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-github"></i>
-                  </button>
-                </div>
-              </form>
+    
+                  <!-- Register buttons -->
+                  <div class="text-center">
+                    <p>or sign in:</p>
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-facebook-f"></i>
+                    </button>
+    
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-google"></i>
+                    </button>
+    
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-twitter"></i>
+                    </button>
+    
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-github"></i>
+                    </button>
+                  </div>
+                </form>
             </div>
           </div>
         </div>
