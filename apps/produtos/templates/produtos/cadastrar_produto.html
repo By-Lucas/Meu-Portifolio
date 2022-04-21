@@ -1,0 +1,21 @@
+{% extends 'administracao.html' %}
+
+{% load static %}
+
+{% load bootstrap %}
+
+{% block admin %}
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="col-sm">
+            {% csrf_token %}
+
+            {{ form|bootstrap }}
+            <button class="btn btn-success col-md-4" type="submit">Cadastrar produto</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+

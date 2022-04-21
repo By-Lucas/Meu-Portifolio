@@ -41,6 +41,7 @@ INSTALLED_APPS += [
     'produtos',
     'users',
     'api_pix',
+    'bootstrapform',
 
     'rest_framework',
     #'corsheaders',

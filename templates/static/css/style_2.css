@@ -11,7 +11,7 @@ header {
   background: #fff;
   padding: 10px 20px;
   box-shadow: 0px -8px 25px #6d6d6d;
-  position: fixed;
+  position:fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -27,18 +27,19 @@ header {
   padding-top: 20px;
 }
 aside {
-  margin-top: 50px;
+  margin-top: 0px;
   width: 70px;
   background: #fff;
   padding: 0px 0px 10px 0px;
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0px;
-  height: 100%;
+  min-height: 100vh;
   box-shadow: 0px 3px 5px #6d6d6d;
   overflow: hidden;
   z-index: 99;
 }
+
 aside ul {
   list-style: none;
   width: 100%;
@@ -65,7 +66,7 @@ aside ul li a span {
 article {
   background: #fff;
   width: 92%;
-  height: auto;
+  min-height: 100vh;
   margin-bottom: 4%;
   margin-left: 6%;
   border-radius: 5px;
@@ -187,26 +188,32 @@ p.blink.mah span {
 }
 
 /* parte responsiva */
+@media (max-width: 320px) {
+  article{margin-left: 10px;}
+  aside{ width: 40px ;}
+  .div_main{margin-left: 30px;}
+  aside ul li a{ font-size: 12px;}
+  aside.keep.width{width: 150px;}
+  }
 
 @media (max-width: 576px) {
-  section{margin-left: 5%;}
+  article{margin-left: 10px;}
   aside{ width: 40px ;}
   aside ul li a{ font-size: 12px;}
   aside.keep.width{width: 150px;}
   }
 
 @media (max-width: 768px) {
-  section{margin-left: 5%;}
-  aside{ width: 60px ;}
+  article{margin-left: 15%;}
+  aside{ width: 60px;}
   aside ul li a{ font-size: 13px;}
   aside.keep.width{width: 160px;}
   }
 
 @media (max-width: 1280) {
-  aside{ width: 65px ;}
-  section{margin-left: 7%;}
+  .div_main{margin-left: 120px;}
+  aside{ width: 65px;}
   aside.keep.width{width: 200px;}
-
   }
 
 

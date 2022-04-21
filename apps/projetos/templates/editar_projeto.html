@@ -1,0 +1,15 @@
+{% extends 'administracao.html' %}
+{% load static %}
+{% load bootstrap %}
+
+{% block admin %}
+<div class="container">
+    <h1>Editar projeto</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <input type="submit" class="btn btn-block btn-primary" value="Salvar">
+    </form>
+</div>
+
+{% endblock %}
