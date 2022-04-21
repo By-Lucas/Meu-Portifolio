@@ -1,0 +1,221 @@
+
+
+/*MENU DO CARRINHO FLUTUANTE  ================== */
+.centro {
+    position:fixed;
+    z-index:999; 
+    bottom:0px;
+    overflow:hidden;
+    display:flex;
+    padding:10px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, .5);
+    min-height:80px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-vertical{
+    padding:8px 15px 0px 0px;
+    border:#86d321 2px solid;
+    border-radius: 10px ;
+    background-color: rgb(0, 0, 0);
+    align-items: center;
+}
+
+#principal{
+    margin:0 auto;
+    border:#000000 1px solid;
+    width:790px;
+    height:700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* FIM MENU DO CARRINHO FLUTUANTE  =============== */
+
+
+#mostrar{
+    display:none;
+    }
+
+/* LIMITAR QUANTIADE DE PALAVRAS VAI APARECER NUMA DIV OU p*/
+#texto-limite {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 20px;     /* fallback */
+    max-height: 55px;    /* fallback */
+    -webkit-line-clamp: 3; /* Numero de pontinhos que deve mostrar */
+    -webkit-box-orient: vertical;
+}
+
+/* PAGINA DO GANHADOR */
+.ganhador-gif{
+    background-image: url('/media/gif_ganhador/gif_ganhador.gif');
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+}
+
+.row-gif{
+    height: 700px;
+}
+.cont-ganhador{
+    min-height: 80vh;
+}
+.ef-glow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow;
+    transition-property: box-shadow;
+    box-shadow: 0 0 50px rgb(220, 243, 88);
+    }
+    .ef-glow:hover, .ef-glow:focus, .ef-glow:active {
+    box-shadow: 0 0 55px rgb(10, 236, 104);
+    }
+
+/* FIM PAGIND DO GANHADOR */
+/* IMAGENS DO MENU PRINCIPAL ==========================*/
+.holder {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    content: "";
+    clear: both;
+    display: block;
+}
+.img-fluid {
+    border-radius: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+ }
+
+
+  /* apagina de pagamento */
+
+  .stretch-card>.card {
+    width: 100%;
+    min-width: 100%
+}
+
+body {
+    background-color: #f9f9fa
+}
+
+.flex {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto
+}
+
+@media (max-width:991.98px) {
+    .padding {
+        padding: 1.5rem
+    }
+}
+
+@media (max-width:767.98px) {
+    .padding {
+        padding: 1rem
+    }
+}
+
+.padding {
+    padding: 3rem
+}
+
+.card {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #3da5f;
+    border-radius: 0
+}
+
+.card .card-body {
+    padding: 1.25rem 1.75rem
+}
+
+.card .card-title {
+    color: #000000;
+    margin-bottom: 0.625rem;
+    text-transform: capitalize;
+    font-size: 0.875rem;
+    font-weight: 500
+}
+
+.card .card-description {
+    margin-bottom: .875rem;
+    font-weight: 400;
+    color: #76838f
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #3da5f4;
+    border-color: #3da5f4
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1;
+    border-radius: 0.1875rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+}
+
+.form-control {
+    border: 1px solid #f3f3f3;
+    font-weight: 400;
+    font-size: 0.875rem
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1.375rem;
+    font-size: 1rem;
+    line-height: 1;
+    color: #495057;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+}
+
+input,
+.form-control:focus {
+    outline: none;
+    outline-width: 0;
+    outline-color: transparent;
+    box-shadow: none;
+    outline-style: none
+}

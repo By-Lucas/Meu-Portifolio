@@ -49,4 +49,4 @@ def cadastro(request):
 
 # Create your views here.
 def administracao(request):
-    return render(request, 'administracao.html')
+    return render(request, 'index_adm.html')

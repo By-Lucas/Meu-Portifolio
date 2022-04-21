@@ -3,9 +3,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+  {% block 'head' %}{% endblock %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -14,6 +16,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="{% static 'css/modal-login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/produtos_admin.css' %}">
     <script src="{% static 'js/modal-login.js' %}"></script>
 
     <title>{% block title %} TK Global Admin {% endblock %}</title>
@@ -44,7 +47,7 @@
               <a href="{% url 'todos_projetos' %}"><i class="fab fa-facebook"></i> Projetos</a>
 	          </li>
             <li>
-              <a href="{% url 'todos_projetos' %}"><i class="fab fa-facebook"></i> Produtos</a>
+              <a href="{% url 'todos_produtos_adm' %}"><i class="fab fa-facebook"></i> Produtos</a>
 	          </li>
 	          
             <li>
@@ -81,7 +84,7 @@
               </ul>
 	          </li>
             <li>
-              <a href="{% url 'index' %}">
+              <a href="{% url 'index' %}" target="_blank">
                 <i class="fab fa-facebook"></i> Pagina inicial</a>
 	          </li>
             {% if user.is_authenticated %}
@@ -109,7 +112,6 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
 
-            
             <button type="button" id="sidebarCollapse" class="btn btn-outline-primary">
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>

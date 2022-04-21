@@ -1,0 +1,14 @@
+{% extends 'administracao.html' %}
+{% load bootstrap %} <!--MODELO PEGO NO SITE = https://django-crispy-forms.readthedocs.io/en/latest/filters.html-->
+{% block admin %}
+<div class="container">
+<!--usar em form action sempre o metodo post-->
+    <h1>Tem certeza que deseja remover este produto {{ produto_remover.produto_nome }}?</h1>
+    <form action="" method="post"> {% csrf_token %} <!-- Tem que ter para adicionar para enviar formularios para o db-->
+        <div class="text-center">
+        <input type="submit" class="btn btn-outline-danger col-md-3" value="Deletar">
+        <a href="{% url 'todos_produtos_adm' %}" class="btn btn-outline-primary col-md-3">Voltar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

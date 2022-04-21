@@ -1,10 +1,17 @@
 {% extends 'administracao.html' %}
+
 {% load static %}
+
 {% load bootstrap %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/admin/projetos_admin.css' %}">
+<link rel="stylesheet" href="{% static 'css/admin/efeitos.css' %}">
+{% endblock %}
 
 {% block admin %}
 <div class="container">
-    <h1><strong>Todos os projetos:</strong></h1>
+    <h1>Todos os projetos:</h1>
     <div class=" col-5 text-center">
         {{ message }}
         <br>
@@ -17,41 +24,37 @@
         {% endif %}
     </div>
 
-    <div class="row col-md-8">
-        <table class="table table-bordered table-dark">
-            <thead>
-                <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Opções</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for projeto in projetos %}
-                    <tr>
-                        <th scope="row" class="col-md-1"><h2>{{projeto.id}}</h2></th>
+    <div class="row">
+        {% for projeto in projetos %}
+            <div class="col-md">
+                <div class="card_imovel">
+                    <a class="a_none" href="">
                         {% if projeto.img_projeto %}
-                            <td class="col-md-3">
-                                <img style="border-radius: 5px; width: 100%; height: 150px;" src="{{projeto.img_projeto.url}}" alt=""> 
-                                <h2>{{projeto.nome}}</h2>
-                            </td>
+                            <img class="img_capa_imovel" src="{{projeto.img_projeto.url}}" alt="" target="_blank"> 
                         {% else %}
-                            <td>{{projeto.nome}}</td>
+                            <h2>Sem imagem</h2>
                         {% endif %}
-                        <td class="col-md-2">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <a href="{% url 'editar_projeto' projeto.id %}" class="btn btn-outline-primary" style="width: 100%; margin-bottom: 10px;">Editar</a>
-                                    <br>
-                                    <a href="{% url 'deletar_projeto' projeto.id %}" class="btn btn-outline-danger" style="width: 100%;">Deletar</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        
+                    </a>
+                    <div class="informacoes_imoveis">
+                        <h5 id="texto-limite" class="valor">{{projeto.nome}}</h5>
+                        <h5> 
+                            ID: {{projeto.id}}
+                            <span class="text-success">
+                                <strong>
+                                Ok
+                            </strong>
+                            </span>
+                        </h5>
+                        <div class="box">
+                            <a href="{% url 'editar_projeto' projeto.id %}" style="width: 100%; margin-bottom: 5px;" class="btn btn-outline-primary" >Editar</a>
+                            <a href="{% url 'deletar_projeto' projeto.id %}" style="width: 100%;" class="btn btn-outline-danger">Deletar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
         <div class="pagination">
             <span class="step-links">
                 {% if clientes_todos.has_previous %}
@@ -60,6 +63,7 @@
                 {% endif %}
     
                 <span class="current">
+                    <br>
                     Página {{ clientes_todos.number }} de {{ clientes_todos.paginator.num_pages }}.
                 </span>
     
