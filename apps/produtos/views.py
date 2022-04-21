@@ -48,8 +48,8 @@ def cadastrar_produto(request):
     return render(request, 'produtos/cadastrar_produto.html', context)
 
 @login_required
-def lista_de_clientes(request):
-    clientes_todos = Clientes.objects.all().order_by(
+def todos_produtos(request):
+    produtos_todos = Produto.objects.all().order_by(
         "-id",
     )
     
@@ -59,7 +59,7 @@ def lista_de_clientes(request):
     #O código abaixo serve para a aba de pesquisar usar a variavel 'q', e buscar cliente pelo nome, cpf e email
     queryset = request.GET.get('q')
     if queryset:
-        clientes_todos = Clientes.objects.filter(
+        produtos_todos = Produto.objects.filter(
             Q(nome__icontains=queryset)|
             Q(email__icontains=queryset)|
             #Q(telefone__icontains=queryset)|
@@ -68,55 +68,18 @@ def lista_de_clientes(request):
         )
 
     #Aqui é o código da quantidade de clientes que queremos por página
-    paginator = Paginator(clientes_todos, 7) # Aqui pode alterar o tanto de clientes que desejar
+    paginator = Paginator(produtos_todos, 7) # Aqui pode alterar o tanto de clientes que desejar
     page = request.GET.get('page')
-    clientes_todos = paginator.get_page(page)
+    produtos_todos = paginator.get_page(page)
 
-    return render(request,"clientes/lista_de_clientes.html",{'clientes_todos':clientes_todos})
+    return render(request,"clientes/lista_de_clientes.html",{'produtos_todos':produtos_todos})
 
-def lista_de_clientes(request):
-    clientes_todos = Clientes.objects.all().order_by(
-        "-id",
-    )
-    
-    # Da forma acima, mostra todos os cadastros ordenado pelo ultimo adicionado
-    # poderia colocar por data de cadastro
-
-    #O código abaixo serve para a aba de pesquisar usar a variavel 'q', e buscar cliente pelo nome, cpf e email
-    queryset = request.GET.get('q')
-    if queryset:
-        clientes_todos = Clientes.objects.filter(
-            Q(nome__icontains=queryset)|
-            Q(email__icontains=queryset)|
-            #Q(telefone__icontains=queryset)|
-            Q(cpf__icontains=queryset)|
-            Q(STATUS__icontains=queryset)
-        )
-
-    #Aqui é o código da quantidade de clientes que queremos por página
-    paginator = Paginator(clientes_todos, 7) # Aqui pode alterar o tanto de clientes que desejar
-    page = request.GET.get('page')
-    clientes_todos = paginator.get_page(page)
-
-    return render(request,"clientes/lista_de_clientes.html",{'clientes_todos':clientes_todos})
 
 @login_required
 def editar_cliente(request, id=None):
-    cliente = get_object_or_404(Clientes, id=id)
+    cliente = get_object_or_404(Produto, id=id)
 
-    form = ClienteForm(request.POST or None, instance=cliente)
-
-    if  form.is_valid():
-        obj = form.save()
-        obj.save()
-        messages.info(request, "Cliente editado com sucesso") #cliente informacao
-        return redirect('index')
-
-@login_required
-def editar_produto(request, id=None):
-    cliente = get_object_or_404(Clientes, id=id)
-
-    form = ClienteForm(request.POST or None, instance=cliente)
+    form = ProdutoForm(request.POST or None, instance=cliente)
 
     if  form.is_valid():
         obj = form.save()
