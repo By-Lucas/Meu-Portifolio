@@ -37,14 +37,13 @@ def Cadastrar_projeto(request):
         }
     return render(request, 'cadastrar_projeto.html', context)
 
+@login_required
 def todos_projetos(request):
     projetos_all = projeto.objects.all()
-
     context = {
         'projetos': projetos_all,
     }
     return render(request, 'todos_projetos.html', context)
-
 
 @login_required
 def editar_projeto(request, id=None):
@@ -55,9 +54,17 @@ def editar_projeto(request, id=None):
             obj = form.save()
             obj.save()
             messages.add_message(request, constants.SUCCESS, "Projeto editado com sucesso")
-            return redirect('admin')
+            return redirect('todos_projetos')
         else:
             messages.add_message(request, constants.ERROR, "Erro ao editar projeto")
-            return redirect('admin')
-
+            return redirect('todos_projetos')
     return render(request, 'editar_projeto.html', {'form':form})
+
+@login_required
+def deletar_projeto (request, id=None):
+    projeto_remover = get_object_or_404(projeto, id=id)
+    if request.method == "POST": 
+        projeto_remover.delete()
+        messages.add_message(request, constants.SUCCESS, "Projeto removido com sucesso") #cliente removido
+        return redirect('todos_projetos')
+    return render(request, 'deletar_projeto.html',{'projeto_remover':projeto_remover})

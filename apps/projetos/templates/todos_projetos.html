@@ -5,12 +5,23 @@
 {% block admin %}
 <div class="container">
     <h1><strong>Todos os projetos:</strong></h1>
+    <div class=" col-5 text-center">
+        {{ message }}
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{message.tags}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 
     <div class="row col-md-8">
         <table class="table table-bordered table-dark">
             <thead>
                 <tr>
-                <th scope="col">#</th>
+                <th scope="col">ID</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Opções</th>
                 </tr>
@@ -30,9 +41,9 @@
                         <td class="col-md-2">
                             <div class="row">
                                 <div class="col-sm">
-                                    <a href="#" class="btn btn-outline-primary" style="width: 100%; margin-bottom: 10px;">Editar</a>
+                                    <a href="{% url 'editar_projeto' projeto.id %}" class="btn btn-outline-primary" style="width: 100%; margin-bottom: 10px;">Editar</a>
                                     <br>
-                                    <a href="#" class="btn btn-outline-danger" style="width: 100%;">Deletar</a>
+                                    <a href="{% url 'deletar_projeto' projeto.id %}" class="btn btn-outline-danger" style="width: 100%;">Deletar</a>
                                 </div>
                             </div>
                         </td>
