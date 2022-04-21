@@ -8,6 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!--ICONS AWESOME-->
+    <!-- Our project just needs Font Awesome Free's Solid + Brand files -->
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -41,56 +47,58 @@
 
 	        <ul class="list-unstyled components mb-5">
             <li class="active">
-              <a href="{% url 'admin' %}"><i class="fab fa-facebook"></i> Home</a>
+              <a href="{% url 'admin' %}"><i class="fa-solid fa-house-chimney"></i> Home</a>
 	          </li>
             <li>
-              <a href="{% url 'todos_projetos' %}"><i class="fab fa-facebook"></i> Projetos</a>
+              <a href="{% url 'todos_projetos' %}"><i class="fas fa-project-diagram"></i> Projetos</a>
 	          </li>
             <li>
-              <a href="{% url 'todos_produtos_adm' %}"><i class="fab fa-facebook"></i> Produtos</a>
+              <a href="{% url 'todos_produtos_adm' %}"><i class="fa-solid fa-store"></i> Produtos</a>
 	          </li>
 	          
             <li>
 	            <a href="#criar" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fab fa-facebook"></i> Criar</a>
+                <i class="fa-solid fa-plus"></i> Criar</a>
 	            <ul class="collapse list-unstyled" id="criar">
                   <li>
-                      <a href="{% url 'cadastrar_produto' %}">Cadastrar Produto</a>
+                      <a href="{% url 'cadastrar_produto' %}"><i class="fa-solid fa-circle-plus"></i> Cadastrar Produto</a>
                   </li>
                   <li>
-                    <a href="{% url 'cadastrar_projeto' %}">Cadastrar Projeto</a>
+                    <a href="{% url 'cadastrar_projeto' %}"><i class="fa-solid fa-plus-minus"></i> Cadastrar Projeto</a>
                   </li>
                 <li>
-                    <a href="{% url 'novo_usuario' %}">Cadastrar Usuário</a>
+                    <a href="{% url 'novo_usuario' %}"><i class="fa-solid fa-user-plus"></i> Cadastrar Usuário</a>
                 </li>
 	            </ul>
 	          </li>
 	          <li>
-              <a href="#"><i class="fab fa-facebook"></i> Clientes</a>
+              <a href="#"><i class="fa-solid fa-users"></i> Clientes</a>
 	          </li>
 	          <li>
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fab fa-facebook"></i> Opções</a>
+                <i class="fa-solid fa-screwdriver-wrench"></i> Opções</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
-                    <a href="#">Page 1</a>
+                    <a href="#"><i class="fa-solid fa-circle-arrow-right"></i> Page 1</a>
                 </li>
                 <li>
-                    <a href="#">Page 2</a>
+                    <a href="#"><i class="fa-solid fa-circle-arrow-right"></i> Page 2</a>
                 </li>
                 <li>
-                    <a href="#">Page 3</a>
+                    <a href="#"><i class="fa-solid fa-circle-arrow-right"></i> Page 3</a>
                 </li>
               </ul>
 	          </li>
             <li>
               <a href="{% url 'index' %}" target="_blank">
-                <i class="fab fa-facebook"></i> Pagina inicial</a>
+                <i class="fa-solid fa-location-dot"></i> Pagina inicial</a>
 	          </li>
             {% if user.is_authenticated %}
-                  <a style="margin-left: 30px;" class="btn btn-outline-danger" href="{% url 'logout' %}">Logout</a>
+                  <a style="margin-left: 30px;" class="btn btn-outline-danger" href="{% url 'logout' %}">
+                    <li class="fa-solid fa-right-from-bracket" ></li> Logout</a>
               {% else %}
-              <a style="align-items: center; margin: 15px;" class="btn btn-outline-success" href="{% url 'login' %}">Login</a>
+              <a style="align-items: center;" class="btn btn-outline-success" href="{% url 'login' %}">
+                <i class="fa-solid fa-right-to-bracket" ></li>Login</a>
               {% endif %}
 	        </ul>
 

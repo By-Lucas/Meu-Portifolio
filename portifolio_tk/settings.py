@@ -41,6 +41,8 @@ INSTALLED_APPS += [
     'produtos',
     'users',
     'api_pix',
+
+    'fontawesomefree',
     'bootstrapform',
 
     'rest_framework',

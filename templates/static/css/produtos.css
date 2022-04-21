@@ -23,11 +23,45 @@
 
 .projetos {
     display: inline-block;
-    margin-top: 0px;
-    width: 350px;
+    margin: 15px;
+    width: auto;
     justify-content: center;
     
 }
+
+
+.card_imovel{
+    background: linear-gradient(45deg, #a6a8a8, #b2f8e3);
+    margin-top: 5px;
+    border-radius: 26px;
+    max-width: 250px;
+    max-height: 400px;
+    align-items: center;
+}
+.card_imovel:hover{
+    background: linear-gradient(45deg, #8e8f8f, #c9f5e8);
+	transform: scale(1.0); 
+    box-shadow: 0 2px 15px rgba(14, 204, 55, 0.6);
+	text-decoration: none;
+
+}
+
+.img_capa_imovel{
+    width: 250px;
+    border-top-left-radius: 26px;
+    border-top-right-radius: 26px;
+    max-width: 250px;
+    min-width: 250px;
+    max-height: 200px;
+    min-height: 200px;
+}
+
+
+.informacoes_imoveis{
+    padding: 20px;
+    color: white;
+}
+
 
 .projetos-cards {
     display: flex;

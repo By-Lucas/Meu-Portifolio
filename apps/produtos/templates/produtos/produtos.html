@@ -4,7 +4,6 @@
 
 {% load static %}
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/admin/produtos_admin.css' %}">
     <link rel="stylesheet" href="{% static 'css/admin/efeitos.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/produtos.css' %}">
 {% endblock %}
@@ -73,6 +72,7 @@
       {% endfor %}
         <section>
           <div class="container">
+            <div class="row">
             {% for produto in produtos %}
               {% if produto.id != 1 %}
                 <div class="projetos">
@@ -99,12 +99,13 @@
                       </div> 
                     </div>
                   </div>
+                  <br>
                 </div>
               {% endif %}
             {% endfor %}
           </div>
+        </div>
       </section>
   </main>
-  <br>
 </div>
 {% endblock %}
