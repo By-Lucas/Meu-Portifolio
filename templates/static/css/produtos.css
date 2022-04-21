@@ -63,8 +63,6 @@
 
 .icone{
     font-size: 2.0rem;
-    text-align: end;
-    margin-right: 0.5rem;
     cursor: pointer;
     color: green;
     float: right;
@@ -112,8 +110,8 @@
     background-color: #02812d;
     color: #ffffff;
     border-radius: 10px;
-    width: 85%;
-    font-size: 1.5rem;
+    width: 150px;
+    font-size: 1rem;
     text-align: center;
     float: left;
 }

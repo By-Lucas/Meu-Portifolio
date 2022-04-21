@@ -31,7 +31,7 @@ def Cadastrar_projeto(request):
             messages.add_message(request, constants.SUCCESS, 'Projeto cadastrado com sucesso!')
         else:
             messages.add_message(request, constants.ERROR, 'Erro ao cadastrar projeto!')
-        return redirect(request, 'admin')
+        return redirect('todos_projetos')
     context = {
             'form':form,
         }

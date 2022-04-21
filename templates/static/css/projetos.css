@@ -11,6 +11,16 @@
 
 }
 
+/* LIMITAR QUANTIADE DE PALAVRAS VAI APARECER NUMA DIV OU p*/
+#texto-limite {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 20px;     /* fallback */
+    max-height: 55px;    /* fallback */
+    -webkit-line-clamp: 3; /* Numero de pontinhos que deve mostrar */
+    -webkit-box-orient: vertical;
+}
 
 /* Section Projetos */
 
@@ -23,8 +33,7 @@
 
 .projetos {
     margin: 15px;
-    max-width: 400px;
-    
+    max-width: 330px;
 }
 
 .projetos-cards {
@@ -44,7 +53,7 @@
 
 .projetos-card img{
     width: 100%;
-    height: 300px;
+    height: 250px;
     justify-content: center;
     border-radius: 15px;
     -moz-transition: all 0.3s;

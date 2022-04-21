@@ -3,10 +3,12 @@
 {% include '_cabecalho.html' %}
 
 {% load static %}
-
 {% block head %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/produtos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin/produtos_admin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin/efeitos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/produtos.css' %}">
 {% endblock %}
+
 
 {% block titulo %}
   Projetos
@@ -69,19 +71,28 @@
         <hr>
         {% endif %}
       {% endfor %}
-        <section id="projetos">
+        <section>
           <div class="container">
             {% for produto in produtos %}
               {% if produto.id != 1 %}
                 <div class="projetos">
                   <div class="projetos-cards">
-                    <div class="projetos-card">
+                    <div class="card_imovel">
                       <a href="{% url 'produto_id' produto.id %}">
-                        <img style="border-radius: 15px 15px 5px 5px; " src="{{produto.produto_img.url}}"  alt="">
+                        <img class="img_capa_imovel" src="{{produto.produto_img.url}}"  alt="">
                       </a>
                       <div class="projeto-card-desc">
-                        <div class="projeto-card-desc-esquerda">
-                          <h3 class="text-white">{{produto.produto_nome}}</h3>
+                        <div class="informacoes_imoveis">
+                          <img class="icone" width="12%" src="{% static 'css/admin/img/heart-ok.png' %}">
+                          <h5 id="texto-limite" class="valor">{{produto.produto_nome}}</h5>
+                          <h4> 
+                            R$ {{produto.produto_valor}}
+                            <span class="text-success">
+                                <strong>
+                                Ativo
+                            </strong>
+                            </span>
+                        </h4>
                           <a class="botao_1" href="{% url 'produto_id' produto.id %}">Ver produto</a>
                           <a class="icone" href="https://api.whatsapp.com/send?phone=5574981199190&text=Ola%20Lucas%2C%20tudo%20bem%3F" target="_blank"><i class="fab fa-whatsapp"></i></a>
                         </div>
@@ -93,7 +104,7 @@
             {% endfor %}
           </div>
       </section>
-      
   </main>
+  <br>
 </div>
 {% endblock %}

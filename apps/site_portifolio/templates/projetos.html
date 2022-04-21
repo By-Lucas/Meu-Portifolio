@@ -21,7 +21,8 @@
       </div>
     
     <section id="projetos">
-      <div class="container-fluid">
+      <div class="container">
+        <div class="row">
         {% for projeto in projetos%}
           <div class="projetos">
               <div class="projetos-cards">
@@ -32,7 +33,7 @@
                       <div class="projeto-card-desc">
                           <div class="projeto-card-desc-esquerda">
                               <h3 class="text-white">{{projeto.nome}}</h3>
-                              <p class="text-white"> {{projeto.descricao}}</p>
+                              <p class="text-white" id="texto-limite"> {{projeto.descricao}}</p>
                               <div class="projeto-card-desc-categorias">
                                   <div class="projeto-card-desc-categoria flutter">Python</div>
                               </div>
@@ -55,6 +56,7 @@
               </div>
           </div>
           {% endfor %}
+        </div>
       </div>
   </section>
 </main>
