@@ -62,8 +62,8 @@
                     <a href="?page={{ clientes_todos.previous_page_number }}&q={% if  request.GET.q %}{{ request.GET.q }}{% endif %}">Anterio</a>
                 {% endif %}
     
-                <span class="current">
-                    <br>
+                <br>
+                <span class="current" style="color: black;">
                     Página {{ clientes_todos.number }} de {{ clientes_todos.paginator.num_pages }}.
                 </span>
     

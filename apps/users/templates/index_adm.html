@@ -2,10 +2,53 @@
 
 {% load static %}
 
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/admin/index_admin.css' %}">
+{% endblock %}
+
 {% block titulo %} Home {% endblock titulo %}
 
 {% block admin %}
+<div class="container fundo">
+    <div class="row">
+        <div class="col-sm caixa-saldo">
+            <h4 class="titulo-caixa">Pagos</h4>
+            <p>teste 1</p>
+        </div>
+        <div class="col-sm caixa-saldo2">
+            <h4 class="titulo-caixa">Aguardando</h4>
+            <p>teste 1</p>
+        </div>
+        <div class="col-sm caixa-saldo3">
+            <h4 class="titulo-caixa">Reembolsados</h4>
+            <p>teste 1</p>
+        </div>
+        <div class="col-sm caixa-saldo4">
+            <h4 class="titulo-caixa">Titulo</h4>
+            <p>teste 1</p>
+        </div>
+        <div class="col-sm caixa-saldo5">
+            <h4 class="titulo-caixa">Titulo</h4>
+            <p>teste 1</p>
+        </div>
+    </div>
 
-    <h1>Home</h1>
+    <div class="row margin-row">
+        <div class="col-sm caixa-info">
+            <h4 class="titulo-caixa">Informações</h4>
+            <p>Informações</p>
+        </div>
+    
+        <div class="col-sm caixa-info">
+            <h4 class="titulo-caixa">Informações</h4>
+            <p>Informações</p>
+        </div>
+
+        <div class="col-sm caixa-info">
+            <h4 class="titulo-caixa ">Informações</h4>
+            <p>Informações</p>
+        </div>
+    </div>
+</div>
 
 {% endblock admin %}
