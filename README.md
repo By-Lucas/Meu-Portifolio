@@ -6,6 +6,17 @@
 
 *- Está sendo implementado o método de pagamento via pix automátizado, que foi criada e consumida a api do banco Ebanx para fornecer o QRcode e Chave aleatória com valor do produto selecionado.*
 
+## TECNOLOGIAS UTILIZADAS
+- Python
+- Django
+- Mysql
+- ApiRest
+- JavaScript
+- Ajax
+- Bootstrap
+- css
+- Html
+
 ## Gia para rodar o portifílo
 
 *Instalar Virtualenv*
