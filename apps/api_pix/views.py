@@ -1,4 +1,3 @@
-from multiprocessing import context
 from django.shortcuts import redirect, render
 import requests
 import json
@@ -16,7 +15,7 @@ from django.http import Http404
 from django.contrib import messages
 
 from .models import Charge
-from plataforma.models import MeusPedidos
+from produtos.models import MeusPedidos
 from .serializers import ChargeSerializer
 from .consts import (
     API_PIX_PRODUCTION_MODE,
@@ -40,7 +39,6 @@ class BaseAPI(APIView):
                 os.environ['PIX_TOKEN_EXPIRES'] = str(floor(expires))
                 os.environ['PIX_TOKEN_VALUE']  = token_info['access_token']
                 return token_info['access_token']
-
         return ''
     
     def _get_token_from_server(self):
@@ -63,11 +61,10 @@ class ChargeList(BaseAPI):
         charges = Charge.objects.all().order_by('-status')
         serializer = ChargeSerializer(charges, many=True)
         itens = MeusPedidos.objects.filter(usuario=request.user).all()
-        for i in itens:
-            numeros_comprados= i.numeros_comprados
+        #for i in itens:
+        #    numeros_comprados= i.numeros_comprados
         print('TESTE',itens.all(),dir(itens))
 
-        
         context= {
             'serialazer': serializer.data,
             'charges':charges,
@@ -75,7 +72,6 @@ class ChargeList(BaseAPI):
             'itens':itens
         }
         return render(request,'cobrancas.html', context)
-        
     
     def post(self, request):
         if request.user.is_authenticated:
@@ -140,7 +136,6 @@ class ChargeList(BaseAPI):
 
 
 class ChargeDetail(BaseAPI):
-     
     def __get_object(self, txid):
         try:
             return Charge.objects.get(txid=txid)

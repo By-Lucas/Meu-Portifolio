@@ -6,5 +6,7 @@ urlpatterns = [
     path('', include('produtos.urls')),
     path('', include('projetos.urls')),
     path('user/', include('users.urls')),
+    path('api-pix/v1/', include('api_pix.urls')),
+    path('', include('frontend.urls')),
     path('admin/', admin.site.urls),
 ]
