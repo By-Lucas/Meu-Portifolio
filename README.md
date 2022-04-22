@@ -1,4 +1,10 @@
 # PORTIFOLIO + FREELANCERS
+## Informações
+*- Portifílio mostrando minha habilidades, projetos e serviços.*
+
+*-No portifílio adcionei tambem pagina de administração para criar, editar, deletar e acompanhar ganhos feito nas vendas dos projetos freelancers.*
+
+*- Está sendo implementado o método de pagamento via pix automátizado, que foi criada e consumida a api do banco Ebanx para fornecer o QRcode e Chave aleatória com valor do produto selecionado.*
 
 ## Gia para rodar o portifílo
 
@@ -29,7 +35,7 @@ python manage.py runserver
 
 ## Informações importantes
 
-*Para ter acesso a pagina de administrador, bastar criar um super usuário com comando abaixo e seguir o passo a passo, ou pode logar com usuário padroão criado por mim (Usuário: lucasdev e a senha é: 123*
+*Para ter acesso a pagina de administrador, bastar criar um super usuário com comando abaixo e seguir o passo a passo, ou pode logar com usuário padroão criado por mim (Usuário: lucasdev e a senha é: 123)*
 ~~~ superuser
 python manage.py createsuperuser
 ~~~
