@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('produtos', '0002_alter_meuspedidos_nr_pedido'),
+        ('produtos', '0004_alter_meuspedidos_nr_pedido'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='meuspedidos',
             name='nr_pedido',
-            field=models.UUIDField(auto_created=True, default='e90ece9d6d3f415baa60a68e0c28e0fe', editable=False, primary_key=True, serialize=False, unique=True),
+            field=models.UUIDField(auto_created=True, default='6fd8e34a13204165b8ddcaf555ea2b70', editable=False, primary_key=True, serialize=False, unique=True),
         ),
     ]

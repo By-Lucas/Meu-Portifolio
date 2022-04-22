@@ -1,6 +1,6 @@
 from django.contrib import messages, auth
 from django.shortcuts import redirect, render
-from plataforma.models import MeusPedidos
+from produtos.models import MeusPedidos
 
 def index(request, template_name = 'finaizar_pedido.html'):
     if request.user.is_authenticated:
