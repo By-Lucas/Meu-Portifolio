@@ -15,7 +15,7 @@ from django.http import Http404
 from django.contrib import messages
 
 from .models import Charge
-from produtos.models import MeusPedidos
+from produtos.modelos.pedidos import MeusPedidos
 from .serializers import ChargeSerializer
 from .consts import (
     API_PIX_PRODUCTION_MODE,

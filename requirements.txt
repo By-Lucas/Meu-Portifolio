@@ -5,7 +5,7 @@ click==8.1.1
 colorama==0.4.4
 distlib==0.3.4
 dj-database-url==0.5.0
-Django==4.0.4
+Django
 django-bootstrap-form==3.4
 django-braces==1.15.0
 django-cors-headers==3.11.0

@@ -42,19 +42,16 @@
 </head>
 
 <body>
-
     {% include '_cabecalho.html' %} {% block conteudo %}{% endblock %}
-
     <footer class="mt-4 mb-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <p>
-                        <h5 class="ml-3" style="margin-bottom: 15px;">CNPJ: 45.043.047/000-70</h5>
                         <a class="ml-3" href="/">Home</a>
                         <a class="ml-3" href="{% url 'projetos' %}">Projetos</a>
                         <a class="ml-3" href="{% url 'produtos' %}">Produtos</a>
-                        <a class="ml-3" href="{% url 'sobre' %}">Currículo</a>
+                        <!--<a class="ml-3" href="{% url 'sobre' %}">Currículo</a>-->
                     </p>
                 </div>
                 <div class="col-md-4 flex justify-content-end">
@@ -80,6 +77,22 @@
             </div>
         </div>
     </footer>
+
+    <!-- ICONS DE - WHATSAPP, GITHUB E LINKEDIN-->
+    <div>
+        <a href="https://github.com/By-Lucas" style="position:fixed;width:50px;height:50px;bottom:150px;right:30px;background-color:#0a0e0b;color:#FFF;border-radius:50px;text-align:center;font-size:25px;box-shadow: 1px 1px 2px #888;
+            z-index:1000;" target="_blank">
+            <i style="margin-top:16px" class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/lucastk/" style="position:fixed;width:50px;height:50px;bottom:95px;right:30px;background-color:#124c97;color:#FFF;border-radius:50px;text-align:center;font-size:25px;box-shadow: 1px 1px 2px #888;
+            z-index:1000;" target="_blank">
+            <i style="margin-top:16px" class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=5574981199190&text=Ol%C3%A1%20Lucas%2C%20tudo%20bem%3F" style="position:fixed;width:50px;height:50px;bottom:40px;right:30px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:25px;box-shadow: 1px 1px 2px #888;
+            z-index:1000;" target="_blank">
+            <i style="margin-top:16px" class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
     <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>

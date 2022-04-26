@@ -30,12 +30,30 @@
 }
 
 
+.caixa-produto{
+    background: linear-gradient(45deg, #d1e0e0, #a4f3db);
+    border: 1px solid rgb(78, 78, 78);
+    border-bottom: 4px rgb(151, 34, 187) solid;
+    box-shadow: 0px 2px 15px #6d6d6d;
+    border-radius: 10px;
+    margin: 0px 20px  10px;
+}
+
+.titulo-caixa{
+    align-items: center;
+    padding: 3px;
+    position: relative;
+    justify-content: center;
+    display: flex;
+}
+
 .card_imovel{
     background: linear-gradient(45deg, #a6a8a8, #b2f8e3);
     margin-top: 5px;
     border-radius: 26px;
     max-width: 250px;
     max-height: 400px;
+    box-shadow: 0px 2px 15px #6d6d6d;
     align-items: center;
 }
 .card_imovel:hover{

@@ -56,6 +56,7 @@ class Produto(models.Model):
     produto_imagens = models.ManyToManyField(Imagem)
     pagamento_tempo = models.CharField(choices=pagamento_tempo, max_length=30, null=True, blank=True)
     produto_pix = models.ImageField(upload_to='img', null=True, blank=True)
+    produto_pix_codigo = models.CharField(max_length=150, null=True, blank=True)
     produto_valor = models.DecimalField(max_digits=8, decimal_places=2)
     produto_dia_suporte = models.CharField(max_length=100, null=True, blank=True)
     produto_horario_suporte = models.TimeField(null=True, blank=True)
@@ -69,33 +70,3 @@ class Produto(models.Model):
 
     def __str__(self) -> str:
         return self.produto_nome
-
-class MeusPedidos(models.Model):
-    def codigo_pedido (length=6):
-        size = 6
-        chars = ''.join(random.sample(chars, size))
-        return chars
-
-    STATUS_PEDIDO = (('PG',u'Pago'),
-                    ('PD',u'Pendente'),
-                    ('CL',u'Cancelado'))
-
-    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
-    pagamento = models.ForeignKey(Charge, on_delete=models.CASCADE, null=True)
-    nome_usuario = models.CharField(max_length=25, null=True)
-    nr_pedido = models.UUIDField( primary_key = True, default = uuid.uuid4().hex, editable = False, auto_created=True, unique=True)
-    #nr_pedido = models.UUIDField( primary_key = True, default = shortuuid.ShortUUID().random(length=5), editable = False, auto_created=True, unique=True) 
-    produto_id = models.ManyToManyField(Produto)
-    quantidade = models.IntegerField(null=True, blank=True)
-    preco_unitario = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    valor_total = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    numeros_comprados = models.CharField(max_length=10000, blank=True, null=True)
-    status_pedido = models.CharField(choices=STATUS_PEDIDO, max_length=20, blank=True, null=True)
-    data_Pedido = models.DateTimeField(auto_now_add=True, blank=False, null=False)
-
-    class Meta:
-        verbose_name = 'Meu pedido'
-        verbose_name_plural = 'Meus pedidos'
-
-    def __str__(self) -> str:
-        return f'Usuario: {self.usuario} | Data: {self.data_Pedido}'

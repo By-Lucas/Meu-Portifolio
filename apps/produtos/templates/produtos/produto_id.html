@@ -29,7 +29,7 @@
           <div class="carousel-inner"  style="height: 540px;">
             {% for img in produto.produto_imagens.all %}
               <div class="carousel-item {% if forloop.first %} active {% endif %}" >
-                <img class="d-block w-100 img-fluid"  style="height: 100%;" src="{{img}}" alt="First slide">
+                <img class="d-block w-100 img-fluid"  style="height: 500px;" src="{{img}}" alt="First slide">
               </div>
             {% endfor %}
           </div>
@@ -46,52 +46,74 @@
       <div class="bicicleta-conteudo">
         <p class="font-2-l">{{produto.produto_descricao}}</p>
         <div class="bicicleta-comprar">
-          <a class="botao" href="../orcamento.html">Comprar Agora</a>
+          <a class="botao" href="https://api.whatsapp.com/send?phone=5574981199190&text=Ol%C3%A1%2C%20tudo%20bem%3F%20Gostaria%20de%20adquirir%20o%20produto." target="_blank">
+            Entrar em contato
+          </a>
           <span class="font-1-xs cor-6"><img src="../img/icones/entrega.svg" alt=""> 7 dias de garantia</span>
           <span class="font-1-xs cor-6"><img src="../img/icones/estoque.svg" alt=""> {{produto.produto_disponiveis}} disponíveis</span>
         </div>
 
-        <h2 class="font-1-xl cor-10">Informações</h2>
-        <ul class="bicicleta-informacoes">
-          <li>
-            <img src="../img/icones/eletrica.svg" alt="">
-            <h3 class="font-1-m cor-0">Status</h3>
-            {% if produto.produto_status == 'D' %}
-            <p class="font-2-xs cor-5">Disponível</p>
-            {% elif produto.produto_status == 'A' %}
-            <p class="font-2-xs cor-5">Em atualização</p>
-            {% elif produto.produto_status == 'C' %}
-            <p class="font-2-xs cor-5">Indisponível</p>
-            {% endif %}
-          </li>
-          <li>
-            <img src="../img/icones/velocidade.svg" alt="">
-            <h3 class="font-1-m cor-0">Pagamento</h3>
-            {% if produto.pagamento_tempo == 'M' %}
-            <p class="font-2-xs cor-5">Mensal</p>
-            {% elif produto.pagamento_tempo == 'T' %}
-            <p class="font-2-xs cor-5">Trimestral</p>
-            {% elif produto.pagamento_tempo == 'A' %}
-            <p class="font-2-xs cor-5">Anual</p>
-            {% elif produto.pagamento_tempo == 'V' %}
-            <p class="font-2-xs cor-5">Vitalício</p>
-            {% endif %}
-          </li>
-          <li>
-            <img src="../img/icones/rastreador.svg" alt="">
-            <h3 class="font-1-m cor-0">Categoria</h3>
-            <p class="font-2-xs cor-5">{{produto.produto_caregoria}}</p>
-          </li>
-          <li>
-            <img src="../img/icones/carbono.svg" alt="">
-            <h3 class="font-1-m cor-0">Suporte</h3>
-            <p class="font-2-xs cor-5">{{produto.produto_dia_suporte}}</p>
-          </li>
-        </ul>
       </div>
     </div>
+  
+      </div>
   </main>
 
+<article class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h2 class="font-1-xl cor-10">Informações</h2>
+      <ul class="bicicleta-informacoes">
+        <li>
+          <img src="../img/icones/eletrica.svg" alt="">
+          <h3 class="font-1-m cor-0">Status</h3>
+          {% if produto.produto_status == 'D' %}
+          <p class="font-2-xs cor-5">Disponível</p>
+          {% elif produto.produto_status == 'A' %}
+          <p class="font-2-xs cor-5">Em atualização</p>
+          {% elif produto.produto_status == 'C' %}
+          <p class="font-2-xs cor-5">Indisponível</p>
+          {% endif %}
+        </li>
+        <li>
+          <img src="../img/icones/velocidade.svg" alt="">
+          <h3 class="font-1-m cor-0">Pagamento</h3>
+          {% if produto.pagamento_tempo == 'M' %}
+          <p class="font-2-xs cor-5">Mensal</p>
+          {% elif produto.pagamento_tempo == 'T' %}
+          <p class="font-2-xs cor-5">Trimestral</p>
+          {% elif produto.pagamento_tempo == 'A' %}
+          <p class="font-2-xs cor-5">Anual</p>
+          {% elif produto.pagamento_tempo == 'V' %}
+          <p class="font-2-xs cor-5">Vitalício</p>
+          {% endif %}
+        </li>
+        <li>
+          <img src="../img/icones/rastreador.svg" alt="">
+          <h3 class="font-1-m cor-0">Categoria</h3>
+          <p class="font-2-xs cor-5">{{produto.produto_caregoria}}</p>
+        </li>
+        <li>
+          <img src="../img/icones/carbono.svg" alt="">
+          <h3 class="font-1-m cor-0">Suporte</h3>
+          <p class="font-2-xs cor-5">{{produto.produto_dia_suporte}}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm">
+      <h2 class="font-1-xl cor-10">Pagamento</h2>
+      <ul class="bicicleta-informacoes">
+        <li>
+          <img style="width: 150px; height:100%" src="{{produto.produto_pix.url}}" alt="">
+        </li>
+        <li>
+          <h3 class="font-1-m cor-0">CÓDIGO PIX:</h3>
+          <h3 class="font-4-xs cor-2">{{produto.produto_pix_codigo}}</h3>
+        </li>
+      </ul>
+    </div>
+  </article>
+<!--
   <article class="container">
     <div class="row">
       <div class="col-sm">
@@ -106,7 +128,7 @@
       </div>
     </div>
   </article>
-
+-->
   <article class="bicicletas-lista container">
     <h2 class="font-1-xxl">Outros produtos<span class="cor-p1">.</span></h2>
     <ul>

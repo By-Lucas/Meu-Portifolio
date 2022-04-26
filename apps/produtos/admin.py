@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Produto, MeusPedidos, Imagem, Imagem_pix
+from .models import Produto, Imagem, Imagem_pix
+from .modelos.pedidos import MeusPedidos
 
 @admin.register(Produto)
 class ProdutoAdmin(admin.ModelAdmin):

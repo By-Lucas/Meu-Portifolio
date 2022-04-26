@@ -24,57 +24,31 @@
       </div>
     </div>
 
-    {% for produto in produtos %}
-      {% if produto.id == 1 %}
-        <div class="bicicletas-bg " style="margin: 10px; border-radius: 10px;"> <!-- Background PRETO-->
-          <div class="bicicletas container">
-            <div class="bicicletas-imagem">
-              {% if produto.produto_img %}
-                <img src="{{produto.produto_img.url}}" alt="{{produto.produto_nome}}">
-              {% else %}
-              <H1>SEM IMAGEM</H1>
-              {% endif %}
-              <span class="font-2-m cor-0" id="home">R$ {{produto.produto_valor}}</span>
-            </div>
-            <div class="bicicletas-conteudo">
-              <h2 class="font-1-xl cor-0">{{produto.produto_nome}}</h2>
-              <p class="font-2-s cor-5">{{produto.produto_descricao}}</p>
-              <ul class="font-1-m cor-5">
-                <li>
-                  <img src="./img/icones/eletrica.svg" alt="">
-                  {% if produto.produto_status == 'D' %}
-                    Disponivel
-                  {% elif produto.produto_status == 'A' %}
-                    Atualizando
-                  {% elif produto.produto_status == 'C' %}
-                    Preenchido
-                  {% endif %}
-                </li>
-                <li>
-                  <img src="./img/icones/carbono.svg" alt="">
-                  {{produto.produto_caregoria}}
-                </li>
-                <li>
-                  <img src="./img/icones/velocidade.svg" alt="">
-                  {{produto.data_criacao}}
-                </li>
-                <li>
-                  <img src="./img/icones/rastreador.svg" alt="">
-                  R$ {{produto.produto_valor}}
-                </li>
-              </ul>
-              <a class="botao seta" href="https://sorteio-lu.herokuapp.com/" target="_blank">Mais Sobre</a>
-            </div>
+    <div class="container">
+      <div class="row" style="margin-top: 30px;">
+        <div class="col-sm caixa-produto">
+          <div class="col-sm" >
+            <h2 class="titulo-caixa">Desenvolvedor Python</h2>
+          </div>
+          <div class="col-sm" style="display: flex; justify-content: center;">
+            <img src="{% static 'media/git/dev.gif' %}" style="height:170px; width: 250px; border-radius: 10px;" alt="">
           </div>
         </div>
-        <hr>
-        {% endif %}
-      {% endfor %}
+        <div class="col-sm caixa-produto">
+          <div class="col-sm" >
+            <h2 class="titulo-caixa">Contrate agora</h2>
+          </div>
+          <div class="col-sm" style="display: flex; justify-content: center;">
+            <img src="{% static 'media/git/contrate.gif' %}" style="height:170px; width: 250px; border-radius: 10px;" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
         <section>
           <div class="container">
             <div class="row">
             {% for produto in produtos %}
-              {% if produto.id != 1 %}
                 <div class="projetos">
                   <div class="projetos-cards">
                     <div class="card_imovel">
@@ -86,7 +60,7 @@
                           <img class="icone" width="12%" src="{% static 'css/admin/img/heart-ok.png' %}">
                           <h5 id="texto-limite" class="valor">{{produto.produto_nome}}</h5>
                           <h4> 
-                            R$ {{produto.produto_valor}}
+                            R$ {{produto.produto_valor}} <br>
                             <span class="text-success">
                                 <strong>
                                 Ativo
@@ -101,7 +75,6 @@
                   </div>
                   <br>
                 </div>
-              {% endif %}
             {% endfor %}
           </div>
         </div>

@@ -11,7 +11,8 @@ from django.utils import timezone
 
 
 # Create your views here.
-from .models import Produto, MeusPedidos
+from .modelos.pedidos import MeusPedidos
+from .models import Produto
 from .forms import ProdutoForm
 
 def produtos_view(request):
