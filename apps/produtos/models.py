@@ -58,6 +58,8 @@ class Produto(models.Model):
     produto_pix = models.ImageField(upload_to='img/pix', null=True, blank=True)
     produto_pix_codigo = models.CharField(max_length=150, null=True, blank=True)
     produto_valor = models.IntegerField()
+    produto_valor_tri = models.IntegerField()
+    produto_valor_vitalicio = models.IntegerField()
     produto_dia_suporte = models.CharField(max_length=100, null=True, blank=True)
     produto_horario_suporte = models.TimeField(null=True, blank=True)
     produto_status = models.CharField(max_length=15, choices=choices_status, default="D")

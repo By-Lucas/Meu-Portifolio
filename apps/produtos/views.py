@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
@@ -99,3 +100,44 @@ def deletar_produto(request, id=None):
         messages.add_message(request, constants.SUCCESS, "Produto removido com sucesso") #cliente removido
         return redirect('todos_produtos_adm')
     return render(request, 'produtos/deletar_produto.html',{'produto_remover':produto_remover})
+
+def Meus_pedidos(request, produto_id):
+    if request.user.is_authenticated:
+        user_username = request.user.username
+        user_id = request.user.id
+        produto = Produto.objects.get(id=produto_id)
+        print(dir(produto), print(produto.get_produto_by_id))
+
+    context = {
+        'produto': produto,
+    }
+    return render(request, "pagamentos/pagamento_produto.html", context)
+
+def enviar_pedido(request, produto_id):
+    valor_get = request.POST.get('produto')
+    print('valor',valor_get)
+    if request.user.is_authenticated:
+        user_username = request.user.username
+        user_id = request.user.id
+        produto = Produto.objects.get(id=produto_id)
+        print(dir(produto), print(produto.get_produto_by_id))
+        if request.method == "POST":
+            quantidade_comprado = 0
+            quantidade_comprado +=1
+            valor_total = int(quantidade_comprado * valor_get)
+            criar_pedido = MeusPedidos.objects.create(
+                                                    quantidade=quantidade_comprado,
+                                                    preco_unitario=produto.produto_valor,
+                                                    valor_total=valor_total,
+                                                    produto=produto,
+                                                    usuario=user_id,
+                                                    nome_usuario=user_username)
+            criar_pedido.save()
+
+            messages.success(request, f"pedido enviado {criar_pedido}")
+            
+            return HttpResponse(criar_pedido)
+    context = {
+        'produto': produto,
+    }
+    return render(request, "pagamentos/pagamento_produto.html", context)

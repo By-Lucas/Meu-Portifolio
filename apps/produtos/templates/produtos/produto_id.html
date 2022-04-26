@@ -16,48 +16,51 @@
   }
 </style>
 <div id="bicicleta">
-  <main>
-    <div>
-      <div class="titulo container">
-        <h1 class="font-1-xxl text-">{{produto.produto_nome}}<span class="cor-p1">.</span></h1>
-        <h2 class="font-1-xl" style="color: green;">R$ {{produto.produto_valor}}</h2>
+  <!--enctype="multipart/form-data"-->
+  <form method="POST"  action="{% url 'meu_produto' produto.id %}">
+    {% csrf_token %}
+    <main>
+      <div>
+        <div class="titulo container">
+          <h1 class="font-1-xxl text-">{{produto.produto_nome}}<span class="cor-p1">.</span></h1>
+          <h2 class="font-1-xl" style="color: green;">R$ {{produto.produto_valor}}</h2>
+        </div>
       </div>
-    </div>
-    <div class="bicicleta container margin_main">
-      <div class="bicicleta-imagens">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner"  style="height: 540px;">
-            {% for img in produto.produto_imagens.all %}
-              <div class="carousel-item {% if forloop.first %} active {% endif %}" >
-                <img class="d-block w-100 img-fluid"  style="height: 500px;" src="{{img}}" alt="First slide">
-              </div>
-            {% endfor %}
+      <div class="bicicleta container margin_main">
+        <div class="bicicleta-imagens">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner"  style="height: 540px;">
+              {% for img in produto.produto_imagens.all %}
+                <div class="carousel-item {% if forloop.first %} active {% endif %}" >
+                  <img class="d-block w-100 img-fluid"  style="height: 500px;" src="{{img}}" alt="First slide">
+                </div>
+              {% endfor %}
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-          </a>
         </div>
-      </div>
-      <div class="bicicleta-conteudo">
-        <p class="font-2-l">{{produto.produto_descricao}}</p>
-        <div class="bicicleta-comprar">
-          <a class="botao" href="https://api.whatsapp.com/send?phone=5574981199190&text=Ol%C3%A1%2C%20tudo%20bem%3F%20Gostaria%20de%20adquirir%20o%20produto." target="_blank">
-            Entrar em contato
-          </a>
-          <span class="font-1-xs cor-6"><img src="../img/icones/entrega.svg" alt=""> 7 dias de garantia</span>
-          <span class="font-1-xs cor-6"><img src="../img/icones/estoque.svg" alt=""> {{produto.produto_disponiveis}} disponíveis</span>
-        </div>
+        <div class="bicicleta-conteudo">
+          <p class="font-2-l">{{produto.produto_descricao}}</p>
+          <div class="bicicleta-comprar">
+            <button class="botao" type="submit">Comprar agora</button>
 
+            <span class="font-1-xs cor-6"><img src="../img/icones/entrega.svg" alt=""> 7 dias de garantia</span>
+            <span class="font-1-xs cor-6"><img src="../img/icones/estoque.svg" alt=""> {{produto.produto_disponiveis}} disponíveis</span>
+          </div>
+
+        </div>
       </div>
-    </div>
-  
-      </div>
-  </main>
+    
+        </div>
+    </main>
+  </form> 
 
 <article class="container">
   <div class="row">

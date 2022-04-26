@@ -8,13 +8,13 @@ import uuid
 
 
 class MeusPedidos(models.Model):
-    usuario = models.ForeignKey(Usuario_perfil, on_delete=models.CASCADE)
+    usuario = models.CharField(max_length=50, null=True, blank=True)
     pagamento = models.ForeignKey(Charge, on_delete=models.CASCADE, null=True)
-    nome_usuario = models.CharField(max_length=25, null=True)
+    nome_usuario = models.CharField(max_length=25, null=True, blank=True)
     nr_pedido = models.UUIDField( primary_key = True, default = uuid.uuid4().hex, editable = False, auto_created=True, unique=True)
     #nr_pedido = models.UUIDField( primary_key = True, default = shortuuid.ShortUUID().random(length=5), editable = False, auto_created=True, unique=True) 
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
-    quantidade = models.IntegerField(default=1, null=True, blank=True)
+    quantidade = models.IntegerField(default=0, null=True, blank=True)
     preco_unitario = models.IntegerField()
     valor_total = models.IntegerField()
     status_pedido = models.BooleanField(default=False)

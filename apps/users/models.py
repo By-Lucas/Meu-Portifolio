@@ -12,8 +12,9 @@ class Usuario_perfil(models.Model):
     telefone = models.CharField(max_length=50, null=True, blank=False, unique=False)
     comprovante = models.FileField(upload_to='media/comprovantes',null=True, blank=True)
     data_cadastrado = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    
     def __str__(self) -> str:
-        return self.nome
+        return self.user
 
     def register(self):
         self.save()
