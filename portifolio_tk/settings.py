@@ -44,7 +44,6 @@ INSTALLED_APPS += [
 
     'fontawesomefree',
     'bootstrapform',
-
     'rest_framework',
     #'corsheaders',
 ]
