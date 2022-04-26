@@ -17,6 +17,7 @@
 - css
 - Html
 
+
 ## Gia para rodar o portifílo
 
 *Instalar Virtualenv*
