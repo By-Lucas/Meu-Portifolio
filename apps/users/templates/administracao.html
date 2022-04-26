@@ -31,7 +31,7 @@
     
 </head>
 <body>
-
+  {% if user.is_authenticated %}
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
@@ -41,7 +41,7 @@
 
           {% if user.is_authenticated %}
           <p class="usuario">Usuário: <span class="text-success"> {{ usuario.funcionario.nome }}
-            {{ usuario.funcionario.sobrenome }}
+            {{ user.username }}
           </span></p>
           {% else %}
           <p>{{ usuario.funcionario.sobrenome }}</p>
@@ -196,5 +196,13 @@
     <script src="{% static 'js/popper.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    {% else %}
+    <div class="container">
+      <div class="row">
+        <h1>PARA ACESSAR A PAGINA DE ADMINISTRAÇÃO, FAÇA O LOGIN</h1>
+        <a class="btn btn-outline-primary col-md-4" href="{% url 'login' %}">FAZER LOGIN</a>
+      </div>
+    </div>
+    {% endif %}
 </body>
 </html>

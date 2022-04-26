@@ -3,28 +3,30 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from api_pix.models import Charge
 from ..models import Produto
-
+from users.models import Usuario_perfil
 import uuid 
-import random
+
 
 class MeusPedidos(models.Model):
-
-    STATUS_PEDIDO = (('PG',u'Pago'),
-                    ('PD',u'Pendente'),
-                    ('CL',u'Cancelado'))
-
-    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    usuario = models.ForeignKey(Usuario_perfil, on_delete=models.CASCADE)
     pagamento = models.ForeignKey(Charge, on_delete=models.CASCADE, null=True)
     nome_usuario = models.CharField(max_length=25, null=True)
     nr_pedido = models.UUIDField( primary_key = True, default = uuid.uuid4().hex, editable = False, auto_created=True, unique=True)
     #nr_pedido = models.UUIDField( primary_key = True, default = shortuuid.ShortUUID().random(length=5), editable = False, auto_created=True, unique=True) 
-    produto_id = models.ManyToManyField(Produto)
-    quantidade = models.IntegerField(null=True, blank=True)
-    preco_unitario = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    valor_total = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    numeros_comprados = models.CharField(max_length=10000, blank=True, null=True)
-    status_pedido = models.CharField(choices=STATUS_PEDIDO, max_length=20, blank=True, null=True)
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    quantidade = models.IntegerField(default=1, null=True, blank=True)
+    preco_unitario = models.IntegerField()
+    valor_total = models.IntegerField()
+    status_pedido = models.BooleanField(default=False)
     data_Pedido = models.DateTimeField(auto_now_add=True, blank=False, null=False)
+
+    def placeOrder(self):
+        self.save()
+
+    @staticmethod
+    def get_meusPedidos_by_usuario(usuario_id):
+        return MeusPedidos.objects.filter(usuario=usuario_id).order_by('-data_Pedido')
+
 
     class Meta:
         verbose_name = 'Meu pedido'

@@ -13,7 +13,7 @@ class Imagem(models.Model):
         return self.img.url        
 #------------------------------------------------
 class Imagem_pix(models.Model):
-    img_pix = models.ImageField(upload_to='img')
+    img_pix = models.ImageField(upload_to='img/pix')
     def __str__(self) -> str:
         return self.img_pix.url
 
@@ -55,9 +55,9 @@ class Produto(models.Model):
     produto_img = models.ImageField(upload_to='img', null=True, blank=True)
     produto_imagens = models.ManyToManyField(Imagem)
     pagamento_tempo = models.CharField(choices=pagamento_tempo, max_length=30, null=True, blank=True)
-    produto_pix = models.ImageField(upload_to='img', null=True, blank=True)
+    produto_pix = models.ImageField(upload_to='img/pix', null=True, blank=True)
     produto_pix_codigo = models.CharField(max_length=150, null=True, blank=True)
-    produto_valor = models.DecimalField(max_digits=8, decimal_places=2)
+    produto_valor = models.IntegerField()
     produto_dia_suporte = models.CharField(max_length=100, null=True, blank=True)
     produto_horario_suporte = models.TimeField(null=True, blank=True)
     produto_status = models.CharField(max_length=15, choices=choices_status, default="D")
@@ -67,6 +67,21 @@ class Produto(models.Model):
     produto_reservados = models.IntegerField(default=0, null=True, blank=True)
     valor_total_vendidos = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True, help_text='Valor total vendidos')
     data_criacao = models.DateField(auto_now=True, max_length=50, blank=False, null=False)
+
+    @staticmethod
+    def get_produto_by_id(ids):
+        return Produto.objects.filter(id__in =ids)
+    
+    @staticmethod
+    def get_all_produto():
+        return Produto.objects.all()
+    
+    @staticmethod
+    def get_all_produto_by_categoryid(category_id):
+        if category_id:
+            return Produto.objects.filter(category = category_id)
+        else:
+            return Produto.get_all_produto();
 
     def __str__(self) -> str:
         return self.produto_nome

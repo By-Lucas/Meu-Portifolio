@@ -15,6 +15,9 @@ class Usuario_perfil(models.Model):
     def __str__(self) -> str:
         return self.nome
 
+    def register(self):
+        self.save()
+
 # Criar o perfil quado o usuario for criado
 def create_profile(sender, instance, created, **kwargs):
     if created:
