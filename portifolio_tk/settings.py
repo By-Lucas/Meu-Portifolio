@@ -48,8 +48,6 @@ INSTALLED_APPS += [
     #'corsheaders',
 ]
 
-#CORS_ORIGIN_ALLOW_ALL = True
-
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware', # Colocar esse codigo aqui, no segundo lugar
     'django.middleware.security.SecurityMiddleware',
@@ -78,7 +76,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
