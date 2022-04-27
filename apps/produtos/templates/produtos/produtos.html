@@ -62,7 +62,11 @@
                       </a>
                       <div class="projeto-card-desc">
                         <div class="informacoes_imoveis">
-                          <img class="icone" width="12%" src="{% static 'css/admin/img/heart-ok.png' %}">
+                          {% if produto.produto_favorito == True %}
+                            <img class="icone" width="12%" src="{% static 'css/admin/img/heart-ok.png' %}">
+                          {% else %}
+                            <img class="icone" style="background-color: black;" width="12%" src="{% static 'css/admin/img/heart-ok.png' %}">
+                          {% endif %}
                           <h5 id="texto-limite" class="valor">{{produto.produto_nome}}</h5>
                           <h4> 
                             R$ {{produto.produto_valor}},00<br>

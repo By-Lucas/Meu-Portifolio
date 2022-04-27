@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 from api_pix.models import Charge
+from multiselectfield import MultiSelectField
 
 import uuid 
 import random
@@ -50,7 +51,7 @@ class Produto(models.Model):
 
     usuario_produto = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     produto_nome = models.CharField(max_length=100, blank=False, null=False)
-    produto_caregoria = models.CharField(choices=CATEGORIAS, max_length=30, null=True, blank=True)
+    produto_caregoria = MultiSelectField(choices=CATEGORIAS, max_length=30, null=True, blank=True)
     produto_descricao = models.TextField(max_length=500, null=False, blank=False)
     produto_img = models.ImageField(upload_to='img', null=True, blank=True)
     produto_imagens = models.ManyToManyField(Imagem)
@@ -65,6 +66,7 @@ class Produto(models.Model):
     produto_status = models.CharField(max_length=15, choices=choices_status, default="D")
     produto_numeros = models.IntegerField(default=0, help_text='Quantidade disponivels')
     produto_vendidos = models.IntegerField(default=0, null=True, blank=True)
+    produto_favorito = models.BooleanField(default=False)
     produto_disponiveis = models.IntegerField(default=0,null=True, blank=True)
     produto_reservados = models.IntegerField(default=0, null=True, blank=True)
     valor_total_vendidos = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True, help_text='Valor total vendidos')
