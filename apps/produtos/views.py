@@ -106,22 +106,35 @@ def Meus_pedidos(request, produto_id):
         user_username = request.user.username
         user_id = request.user.id
         produto = Produto.objects.get(id=produto_id)
-        print(dir(produto), print(produto.get_produto_by_id))
+        #print(dir(produto), print(produto.get_produto_by_id))
 
     context = {
         'produto': produto,
     }
     return render(request, "pagamentos/pagamento_produto.html", context)
 
+def pedidos_historico(request):
+    if request.user.is_authenticated:
+        m_pedidos = MeusPedidos.objects.filter(usuario=request.user.id).all()
+        todos_pedidos = MeusPedidos.objects.all()
+        context = {
+            'todos_pedidos': todos_pedidos,
+            'm_pedidos':m_pedidos
+        }
+        return render(request, "produtos/meus_produtos.html", context)
+    else:
+        messages.warning(request,'Faça o login para visualizar os conteudos')
+        return redirect('/')
+
 def enviar_pedido(request, produto_id):
-    valor_get = request.POST.get('produto')
-    print('valor',valor_get)
     if request.user.is_authenticated:
         user_username = request.user.username
         user_id = request.user.id
         produto = Produto.objects.get(id=produto_id)
-        print(dir(produto), print(produto.get_produto_by_id))
+        #print(dir(produto), print(produto.get_produto_by_id))
         if request.method == "POST":
+            valor_get = request.POST.get('produto')
+            uploadedFile = request.FILES["comprovante_"]
             quantidade_comprado = 0
             quantidade_comprado +=1
             valor_total = int(quantidade_comprado * valor_get)
@@ -131,13 +144,14 @@ def enviar_pedido(request, produto_id):
                                                     valor_total=valor_total,
                                                     produto=produto,
                                                     usuario=user_id,
-                                                    nome_usuario=user_username)
+                                                    nome_usuario=user_username,
+                                                    comprovante_pagamento=uploadedFile)
             criar_pedido.save()
 
             messages.success(request, f"pedido enviado {criar_pedido}")
             
-            return HttpResponse(criar_pedido)
+            return redirect('pedidos_historico')
     context = {
         'produto': produto,
     }
-    return render(request, "pagamentos/pagamento_produto.html", context)
+    return render(request, "produtos/meus_produtos.html", context)

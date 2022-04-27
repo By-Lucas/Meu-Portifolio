@@ -23,7 +23,7 @@
       <div>
         <div class="titulo container">
           <h1 class="font-1-xxl text-">{{produto.produto_nome}}<span class="cor-p1">.</span></h1>
-          <h2 class="font-1-xl" style="color: green;">R$ {{produto.produto_valor}}</h2>
+          <h2 class="font-1-xl" style="color: green;">R$ {{produto.produto_valor}},00</h2>
         </div>
       </div>
       <div class="bicicleta container margin_main">
@@ -136,11 +136,15 @@
     <h2 class="font-1-xxl">Outros produtos<span class="cor-p1">.</span></h2>
     <ul>
       {% for sugestao in sugestoes %}
-      <li>
+      <li class="col-md-4">
         <a href="{% url 'produto_id' sugestao.id %}">
-          <img class="bicicletas-imagem img fluid" style="height: 300px; width: 100%;" src="{{ sugestao.produto_img.url }}" alt="Bicicleta preta">
+          {% if sugestao.produto_img %}
+            <img class="bicicletas-imagem img fluid" style="height: 300px; width: 100%;" src="{{ sugestao.produto_img.url }}" alt="Bicicleta preta">
+          {% else %}
+            <img class="bicicletas-imagem img fluid" style="height: 300px; width: 100%;" src="{% static 'media/git/dev.gif' %}" alt="Bicicleta preta">
+          {% endif %}
           <h3 class="font-1-xl">{{sugestao.produto_nome}}</h3>
-          <span class="font-2-m cor-8">R$ {{sugestao.produto_valor}}</span>
+          <span class="font-2-m cor-8">R$ {{sugestao.produto_valor}},00</span>
         </a>
       </li>
       {% endfor %}

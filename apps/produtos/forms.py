@@ -1,3 +1,4 @@
+from pyexpat import model
 from django import forms
 from .models import Produto
 from .modelos.pedidos import MeusPedidos
@@ -25,3 +26,13 @@ class ProdutoForm(forms.ModelForm):
             'valor_total_vendidos',
             #'data_criacao',
         ]
+
+class Pedidos_form(forms.ModelForm):
+    class Meta:
+        model:MeusPedidos
+        fields =[
+            'comprovante_pagamento'
+        ]
+
+class Comprovante_form(forms.Form):
+    comprovante_form  = forms.FileField(label='Selecione o comprovante')

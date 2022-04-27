@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block titulo %} Meus produtos {% endblock %}
+
+{% block conteudo %}
+
+<div class="container">
+    <h1>Meus produtos</h1>
+    <div class=" col-6">
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div id="message" class="alert {{message.tags}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <table class="table table-bordered table-primary">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Produto</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pedido in m_pedidos %}
+            <tr class="text-center">
+                <th scope="row">{{pedido.usuario}}</th>
+                <td>{{pedido.nome_usuario}}</td>
+                <td>{{pedido.produto}}</td>
+                <td>R$ {{pedido.valor_total}},00</td>
+                {% if pedido.status_pedido == True %}
+                    <td class="text-success"><strong>Pago</strong></td>
+                {% else %}
+                    <td class="text-danger"><strong>Aguardando</strong></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    
+</div>
+
+{% endblock %}

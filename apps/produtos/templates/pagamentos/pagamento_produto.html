@@ -19,7 +19,7 @@
       {% endif %}
   </div>
 
-    <form class="orcamento container" action="{% url 'meu_pedido' produto.id %}" method="post">
+    <form class="orcamento container" action="{% url 'meu_pedido' produto.id %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="orcamento-produto">
         <h2 class="font-1-xs cor-5">PIX ou Cartão de crédito?</h2>
@@ -44,7 +44,7 @@
             <img src="{{produto.produto_pix.url}}" alt="Bicicleta preta">
           </div>
 
-          <input type="radio" name="produto" value="{{produto.produto_valor}}" id="magic">
+          <input type="radio" name="produto" value="{{produto.produto_valor_tri}}" id="magic">
           <label for="magic">Trimestral <span>R$ {{produto.produto_valor_tri}}</span></label>
           <div class="orcamento-detalhes">
             <ul class="font-1-xs cor-8">
@@ -55,7 +55,7 @@
             <img src="{{produto.produto_pix.url}}" alt="Bicicleta preta">
           </div>
 
-          <input type="radio" name="produto" value="{{produto.produto_valor}}" id="nebula">
+          <input type="radio" name="produto" value="{{produto.produto_valor_vitalicio}}" id="nebula">
           <label for="nebula">Vitalício <span>R$ {{produto.produto_valor_vitalicio}}</span></label>
           <div class="orcamento-detalhes">
             <ul class="font-1-xs cor-8">
@@ -103,6 +103,11 @@
         <div>
           <label for="numero">Número</label>
           <input type="text" id="numero" name="numero">
+        </div>
+        <div>
+          
+          <label for="formFileMultiple" class="form-label">Comprovante de pagamento</label>
+          <input name="comprovante_" class="form-control" type="file" id="formFileMultiple" multiple />
         </div>
         <button class="botao col-2" type="submit">Enviar pagamento</button>
       </div>

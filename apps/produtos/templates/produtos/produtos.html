@@ -53,14 +53,19 @@
                   <div class="projetos-cards">
                     <div class="card_imovel">
                       <a href="{% url 'produto_id' produto.id %}">
+                        {% if produto.produto_img %}
                         <img class="img_capa_imovel" src="{{produto.produto_img.url}}"  alt="">
+                        {% else %}
+                        <img class="img_capa_imovel" src="{% static 'media/git/dev.gif' %}"  alt="">
+                        {% endif %}
+                        
                       </a>
                       <div class="projeto-card-desc">
                         <div class="informacoes_imoveis">
                           <img class="icone" width="12%" src="{% static 'css/admin/img/heart-ok.png' %}">
                           <h5 id="texto-limite" class="valor">{{produto.produto_nome}}</h5>
                           <h4> 
-                            R$ {{produto.produto_valor}} <br>
+                            R$ {{produto.produto_valor}},00<br>
                             <span class="text-success">
                                 <strong>
                                 Ativo
