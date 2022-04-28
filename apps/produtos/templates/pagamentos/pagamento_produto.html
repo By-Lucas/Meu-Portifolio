@@ -31,7 +31,7 @@
         <label for="seguro">C. CRÉDITO</label>
 
         <div class="orcamento-conteudo" id="orcamento-bikcraft">
-          <h2 class="font-1-xs cor-5">Escolha a sua</h2>
+          <h2 class="font-1-xs cor-5">Escolha um método</h2>
 
           <input type="radio" name="produto" value="{{produto.produto_valor}}" id="nimbus">
           <label for="nimbus">Mensal <span>R$ {{produto.produto_valor}}</span></label>
@@ -68,44 +68,99 @@
         </div>
 
         <div class="orcamento-conteudo" id="orcamento-seguro">
+          <h1 class="font-5-xs cor-5">Liberado em breve</h1>
           <h2 class="font-1-xs cor-5">Escolha um método</h2>
 
-          <input type="radio" name="produto" value="prata" id="prata">
-          <label for="prata">Prata <span>R$ 199</span></label>
+          <input type="radio" name="produto" value="{{produto.produto_valor}}" id="{{produto.produto_valor}}" disabled>
+          <label for="{{produto.produto_valor}}">Mensal <span>R$ {{produto.produto_valor}}</span></label>
+          <div class="orcamento-detalhes">
+            <ul class="font-1-xs cor-8">
+              <li><img src="./img/icones/eletrica.svg" alt=""> FAZER PAGAMENTO</li>
+              <li><img src="./img/icones/carbono.svg" alt=""> ANEXAR O COMPROVANTE</li>
+              <li><img src="./img/icones/velocidade.svg" alt=""> LIBERADO ATÉ 24 HORAS</li>
+            </ul>
+            <img src="{{produto.produto_pix.url}}" alt="Bicicleta preta">
+          </div>
 
-          <input type="radio" name="produto" value="ouro" id="ouro">
-          <label for="ouro">Ouro <span>R$ 299</span></label>
+          <input type="radio" name="produto" value="{{produto.produto_valor_tri}}" id="{{produto.produto_valor_tri}}" disabled>
+          <label for="{{produto.produto_valor_tri}}">Trimestral <span>R$ {{produto.produto_valor_tri}}</span></label>
+          <div class="orcamento-detalhes">
+            <ul class="font-1-xs cor-8">
+              <li><img src="./img/icones/eletrica.svg" alt=""> FAZER PAGAMENTO</li>
+              <li><img src="./img/icones/carbono.svg" alt=""> ANEXAR O COMPROVANTE</li>
+              <li><img src="./img/icones/velocidade.svg" alt=""> LIBERADO ATÉ 24 HORAS</li>
+            </ul>
+            <img src="{{produto.produto_pix.url}}" alt="Bicicleta preta">
+          </div>
+
+          <input type="radio" name="produto" value="{{produto.produto_valor_tri}}" id="{{produto.produto_valor_vitalicio}}" disabled>
+          <label for="{{produto.produto_valor_vitalicio}}">Vitalício <span>R$ {{produto.produto_valor_vitalicio}}</span></label>
+          <div class="orcamento-detalhes">
+            <ul class="font-1-xs cor-8">
+              <li><img src="./img/icones/eletrica.svg" alt=""> FAZER PAGAMENTO</li>
+              <li><img src="./img/icones/carbono.svg" alt=""> ANEXAR O COMPROVANTE</li>
+              <li><img src="./img/icones/velocidade.svg" alt=""> LIBERADO ATÉ 24 HORAS</li>
+            </ul>
+            <img src="{{produto.produto_pix.url}}" alt="Bicicleta preta">
+          </div>
+          <!--
+          <input type="radio" name="produto" value="prata" id="prata" disabled>
+          <label for="prata">Mensal <span>R$ {{produto.produto_valor}},00</span></label>
+          <input type="radio" name="produto" value="ouro" id="ouro" disabled>
+          <label for="ouro">Trimestral <span>R$ R$ {{produto.produto_valor_tri}},00</span></label>
+          <input type="radio" name="produto" value="prata" id="prata" disabled>
+          <label for="prata">Vitalício <span>R$ {{produto.produto_valor_vitalicio}},00</span></label>
+          -->
         </div>
       </div>
       <div class="orcamento-dados form">
         <h2 class="font-1-xs cor-9 col-2">dados pessoais</h2>
         <div>
           <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome">
+          <input type="text" id="nome" name="nome" value="{{user.first_name}}" placeholder="Nome">
         </div>
         <div>
           <label for="sobrenome">Sobrenome</label>
-          <input type="text" id="sobrenome" name="sobrenome">
+          <input type="text" id="sobrenome" name="sobrenome" value="{{user.last_name}}" placeholder="Sobrenome">
         </div>
+        {% if perfil %}
         <div>
           <label for="cpf">CPF</label>
-          <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
+          <input type="text" id="cpf" name="cpf" value="{{perfil.cpf}}" placeholder="000.000.000-00">
         </div>
         <div>
           <label for="email">Email</label>
-          <input type="email" id="email" name="email">
+          <input type="text" id="email" name="email" value="{{perfil.email}}" placeholder="E-mail">
         </div>
         <h2 class="font-1-xs cor-9 col-2">Dados</h2>
         <div>
           <label for="cep">CEP</label>
-          <input type="text" id="cep" name="cep">
+          <input type="text" id="cep" name="cep" value="{{perfil.cep}}" placeholder="CEP">
         </div>
         <div>
           <label for="numero">Número</label>
-          <input type="text" id="numero" name="numero">
+          <input type="text" id="numero" name="numero" value="{{perfil.telefone}}" placeholder="Whatsapp">
+        </div>
+        {% else %}
+        <div>
+          <label for="cpf">CPF</label>
+          <input type="text" id="cpf" name="cpf"  placeholder="000.000.000-00">
         </div>
         <div>
-          
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email"  placeholder="E-mail">
+        </div>
+        <h2 class="font-1-xs cor-9 col-2">Dados</h2>
+        <div>
+          <label for="cep">CEP</label>
+          <input type="text" id="cep" name="cep"  placeholder="CEP">
+        </div>
+        <div>
+          <label for="numero">Número</label>
+          <input type="text" id="numero" name="numero"  placeholder="Whatsapp">
+        </div>
+        {% endif %}
+        <div>
           <label for="formFileMultiple" class="form-label">Comprovante de pagamento</label>
           <input name="comprovante_" class="form-control" type="file" id="formFileMultiple" multiple />
         </div>

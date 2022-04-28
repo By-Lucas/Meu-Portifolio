@@ -9,12 +9,15 @@ class Usuario_perfil(models.Model):
     sobrenome = models.CharField(max_length=50, null=True, blank=True)
     foto_usuario = models.FileField(upload_to=f'media/image_perfil/{nome}', null=True, blank=True)
     chave_pix = models.CharField(max_length=100, null=True, blank=True, unique=True)
-    telefone = models.CharField(max_length=50, null=True, blank=False, unique=False)
+    telefone = models.CharField(max_length=11, null=True, blank=False, unique=False)
+    cep = models.CharField(max_length=50, null=True, blank=False, unique=False)
+    cpf = models.CharField(max_length=11, null=True, blank=False, unique=False)
+    email = models.CharField(max_length=50, null=True, blank=False, unique=False)
     comprovante = models.FileField(upload_to='media/comprovantes',null=True, blank=True)
     data_cadastrado = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     
     def __str__(self) -> str:
-        return self.user
+        return self.nome
 
     def register(self):
         self.save()

@@ -12,6 +12,7 @@ from django.utils import timezone
 
 # Create your views here.
 from .modelos.pedidos import MeusPedidos
+from users.models import Usuario_perfil
 from .models import Produto
 from .forms import ProdutoForm
 
@@ -103,14 +104,21 @@ def deletar_produto(request, id=None):
 
 def Meus_pedidos(request, produto_id):
     if request.user.is_authenticated:
+        perfis = Usuario_perfil.objects.filter(nome=request.user.first_name)
         user_username = request.user.username
         user_id = request.user.id
         produto = Produto.objects.get(id=produto_id)
         #print(dir(produto), print(produto.get_produto_by_id))
+        for perfil in perfis:
+            print(perfil.email)
 
-    context = {
-        'produto': produto,
-    }
+    if perfis.exists():
+        context = {
+            'perfil':perfil,
+            'produto': produto,
+        }
+    else:
+        context = {'produto': produto,}
     return render(request, "pagamentos/pagamento_produto.html", context)
 
 def pedidos_historico(request):
@@ -138,19 +146,47 @@ def enviar_pedido(request, produto_id):
             quantidade_comprado = 0
             quantidade_comprado +=1
             valor_total = int(quantidade_comprado * valor_get)
-            criar_pedido = MeusPedidos.objects.create(
-                                                    quantidade=quantidade_comprado,
-                                                    preco_unitario=produto.produto_valor,
-                                                    valor_total=valor_total,
-                                                    produto=produto,
-                                                    usuario=user_id,
-                                                    nome_usuario=user_username,
-                                                    comprovante_pagamento=uploadedFile)
-            criar_pedido.save()
 
-            messages.success(request, f"pedido enviado {criar_pedido}")
-            
-            return redirect('pedidos_historico')
+            telefone = request.POST.get('numero')
+            cpf = request.POST.get('cpf')
+            cep = request.POST.get('cep')
+            email = request.POST.get('email')
+
+            cpf_ = Usuario_perfil.objects.filter(cpf=cpf).all()
+            email_ = Usuario_perfil.objects.filter(email=email).all()
+            if cpf_.exists() or email_.exists():
+                criar_pedido = MeusPedidos.objects.create(
+                            quantidade=quantidade_comprado,
+                            preco_unitario=produto.produto_valor,
+                            valor_total=valor_total,
+                            produto=produto,
+                            usuario=user_id,
+                            nome_usuario=user_username,
+                            comprovante_pagamento=uploadedFile)
+                criar_pedido.save()
+                messages.add_message(request, constants.SUCCESS, f'Pedido adcionado {produto.produto_nome}' )
+                return redirect('pedidos_historico')
+            else:
+                criar_pedido = MeusPedidos.objects.create(
+                            quantidade=quantidade_comprado,
+                            preco_unitario=produto.produto_valor,
+                            valor_total=valor_total,
+                            produto=produto,
+                            usuario=user_id,
+                            nome_usuario=user_username,
+                            comprovante_pagamento=uploadedFile)
+                criar_pedido.save()
+                criar_perfil = Usuario_perfil.objects.create(
+                                nome=request.user.first_name,
+                                sobrenome=request.user.last_name,
+                                telefone=telefone,
+                                cep=cep,
+                                cpf=cpf,
+                                email=email)
+                criar_perfil.save()
+                messages.success(request, f"pedido enviado com sucesso")
+
+                return redirect('pedidos_historico')
     context = {
         'produto': produto,
     }
