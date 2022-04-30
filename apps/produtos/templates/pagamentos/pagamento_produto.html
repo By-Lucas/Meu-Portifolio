@@ -8,16 +8,20 @@
 <div id="orcamento">
 
   <main>
-    <div class=" col-6">
+    <div style="align-items: center; display:flex; justify-content: center;">
+      {{ message }}
       <br>
       {% if messages %}
           {% for message in messages %}
-              <div id="message" class="alert {{message.tags}}">
+              <div class=" col-md-6 alert {{message.tags}} alert-dismissible fade show" style="display:flex; justify-content: center;">
                   {{message}}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
               </div>
           {% endfor %}
       {% endif %}
-  </div>
+    </div>
 
     <form class="orcamento container" action="{% url 'meu_pedido' produto.id %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}

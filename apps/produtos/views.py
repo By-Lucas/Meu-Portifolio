@@ -112,14 +112,17 @@ def Meus_pedidos(request, produto_id):
         for perfil in perfis:
             print(perfil.email)
 
-    if perfis.exists():
-        context = {
-            'perfil':perfil,
-            'produto': produto,
-        }
+        if perfis.exists():
+            context = {
+                'perfil':perfil,
+                'produto': produto,
+            }
+        else:
+            context = {'produto': produto,}
+        return render(request, "pagamentos/pagamento_produto.html", context)
     else:
-        context = {'produto': produto,}
-    return render(request, "pagamentos/pagamento_produto.html", context)
+        messages.add_message(request, constants.ERROR, "Faça o login para prossegir com a compra")
+        return redirect("login")
 
 def pedidos_historico(request):
     if request.user.is_authenticated:

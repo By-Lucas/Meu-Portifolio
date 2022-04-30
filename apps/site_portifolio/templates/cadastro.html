@@ -22,17 +22,20 @@
 
     <!-- Jumbotron -->
     <div class="container py-4">
-      <div class=" col-5 text-center">
-            {{ message }}
-            <br>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert {{message.tags}}">
-                        {{message}}
-                    </div>
-                {% endfor %}
-            {% endif %}
-        </div>
+      <div style="align-items: center; display:flex; justify-content: center;">
+        {{ message }}
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class=" col-md-6 alert {{message.tags}} alert-dismissible fade show" style="display:flex; justify-content: center;">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+      </div>
 
       <div class="row g-0 align-items-center">
         <div class="col-lg-6 mb-5 mb-lg-0">
@@ -91,6 +94,9 @@
                 <button type="submit" class="btn btn-primary btn-block mb-4">
                   Cadastrar
                 </button>
+                <a href="{% url 'login' %}"  class="btn btn-success btn-block mb-4 col-md-4">
+                  Fazer Login
+                </a>
 
                 <!-- Register buttons -->
                 <div class="text-center">
@@ -112,6 +118,7 @@
                   </button>
                 </div>
               </form>
+              
             </div>
           </div>
         </div>
