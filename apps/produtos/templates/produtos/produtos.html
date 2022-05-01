@@ -6,6 +6,13 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/admin/efeitos.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/produtos.css' %}">
+    <style>
+      @media only screen and (max-width: 1200px) {
+      .row{ justify-content: center; display:flex !important;}
+      }
+    </style>
+    
+    style="justify-content: center; display:flex;"
 {% endblock %}
 
 
@@ -51,7 +58,7 @@
 
         <section>
           <div class="container">
-            <div class="row">
+            <div class="row" >
             {% for produto in produtos %}
                 <div class="projetos">
                   <div class="projetos-cards">
