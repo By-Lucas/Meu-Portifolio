@@ -51,29 +51,32 @@
                         </div>
                     </div>
                 </div>
+                <br>
             </div>
         {% endfor %}
     </div>
 
         <div class="pagination">
             <span class="step-links">
-                {% if clientes_todos.has_previous %}
+                {% if projetos_todos.has_previous %}
                     <a href="?page=1">&laquo; Primeira</a> |
-                    <a href="?page={{ clientes_todos.previous_page_number }}&q={% if  request.GET.q %}{{ request.GET.q }}{% endif %}">Anterio</a>
+                    <a href="?page={{ projetos_todos.previous_page_number }}&q={% if  request.GET.q %}{{ request.GET.q }}{% endif %}">Anterio</a>
                 {% endif %}
     
                 <br>
                 <span class="current" style="color: black;">
-                    Página {{ clientes_todos.number }} de {{ clientes_todos.paginator.num_pages }}.
+                    Página {{ projetos_todos.number }} de {{ projetos_todos.paginator.num_pages }}.
                 </span>
     
-                {% if clientes_todos.has_next %}
-                    <a href="?page={{ clientes_todos.next_page_number }}&q={% if  request.GET.q %}{{ request.GET.q }}{% endif %}">Próximo</a> |
-                    <a href="?page={{ clientes_todos.paginator.num_pages }}"> Ultima &raquo;</a>
+                {% if projetos_todos.has_next %}
+                    <a href="?page={{ projetos_todos.next_page_number }}&q={% if  request.GET.q %}{{ request.GET.q }}{% endif %}">Próximo</a> |
+                    <a href="?page={{ projetos_todos.paginator.num_pages }}"> Ultima &raquo;</a>
                 {% endif %}
             </span>
             </div>
         </div>
+        <br>
     </div>
+    
 </div>
 {% endblock %}

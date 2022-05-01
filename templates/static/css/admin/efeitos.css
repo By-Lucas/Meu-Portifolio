@@ -95,9 +95,8 @@
 }
 .img-fluid {
     border-radius: 10px;
-    margin-bottom: 20px;
     align-items: center;
- }
+}
 
 
   /* apagina de pagamento */
@@ -148,7 +147,7 @@ body {
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid #3da5f;
+    border: 1px solid #3da5f4;
     border-radius: 0
 }
 

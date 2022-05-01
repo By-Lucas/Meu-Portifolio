@@ -40,7 +40,21 @@ def Cadastrar_projeto(request):
 @login_required
 def todos_projetos(request):
     projetos_all = projeto.objects.all()
+
+    queryset = request.GET.get('q')
+    if queryset:
+        projetos_all = projeto.objects.filter(
+            Q(nome__icontains=queryset)
+
+        )
+
+    #Aqui é o código da quantidade de clientes que queremos por página
+    paginator = Paginator(projetos_all, 6) # Aqui pode alterar o tanto de produtos que desejar
+    page = request.GET.get('page')
+    projetos_todos = paginator.get_page(page)
+
     context = {
+        'projetos_todos':projetos_todos,
         'projetos': projetos_all,
     }
     return render(request, 'todos_projetos.html', context)
