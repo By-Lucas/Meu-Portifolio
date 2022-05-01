@@ -45,7 +45,6 @@ def todos_projetos(request):
     if queryset:
         projetos_all = projeto.objects.filter(
             Q(nome__icontains=queryset)
-
         )
 
     #Aqui é o código da quantidade de clientes que queremos por página

@@ -28,19 +28,23 @@
       <div class="row" style="margin-top: 30px;">
         <div class="col-sm caixa-produto">
           <div class="col-sm" >
-            <h2 class="titulo-caixa">Desenvolvedor Python</h2>
+            <h2 class="titulo-caixa" style="padding: 10px;">Desenvolvedor Python</h2>
           </div>
+          <!--
           <div class="col-sm" style="display: flex; justify-content: center;">
             <img src="{% static 'media/git/dev.gif' %}" style="height:170px; width: 250px; border-radius: 10px;" alt="">
           </div>
+          -->
         </div>
         <div class="col-sm caixa-produto">
-          <div class="col-sm" >
-            <h2 class="titulo-caixa">Contrate agora</h2>
+          <div class="col-sm">
+            <h2 class="titulo-caixa" style="padding: 10px;">Desenvolvedor Django</h2>
           </div>
+          <!--
           <div class="col-sm" style="display: flex; justify-content: center;">
             <img src="{% static 'media/git/contrate.gif' %}" style="height:170px; width: 250px; border-radius: 10px;" alt="">
           </div>
+          -->
         </div>
       </div>
     </div>
@@ -54,7 +58,7 @@
                     <div class="card_imovel">
                       <a href="{% url 'produto_id' produto.id %}">
                         {% if produto.produto_img %}
-                        <img class="img_capa_imovel" src="{{produto.produto_img.url}}"  alt="">
+                        <img class="img_capa_imovel" style="border-top-left-radius: 20px; border-top-right-radius: 20px;" src="{{produto.produto_img.url}}"  alt="">
                         {% else %}
                         <img class="img_capa_imovel" src="{% static 'media/git/dev.gif' %}"  alt="">
                         {% endif %}
