@@ -9,5 +9,8 @@ class projeto(models.Model):
     tecnologias = models.ManyToManyField(linguagems_progr, null=True, blank=True)
     link_github = models.CharField(max_length=200, null=True, blank=True)
 
+    class Meta:
+        ordering = ('-id',)
+
     def __str__(self) -> str:
         return self.nome

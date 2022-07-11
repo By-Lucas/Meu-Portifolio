@@ -17,7 +17,7 @@ from .models import Produto
 from .forms import ProdutoForm
 
 def produtos_view(request):
-    produtos = Produto.objects.all().order_by('data_criacao')
+    produtos = Produto.objects.all().order_by("-data_criacao")
     context = {
         'produtos':produtos,
     }
@@ -52,7 +52,7 @@ def cadastrar_produto(request):
 
 @login_required
 def todos_produtos(request):
-    produtos_ = Produto.objects.all().order_by("id",)
+    produtos_ = Produto.objects.all().order_by("-id")
 
     #O código abaixo serve para a aba de pesquisar usar a variavel 'q', e buscar cliente pelo nome, cpf e email
     queryset = request.GET.get('q')

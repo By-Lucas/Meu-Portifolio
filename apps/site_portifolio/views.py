@@ -29,7 +29,7 @@ def beneficios(request):
     return render(request, 'beneficios.html')
 
 def projetos(request):
-    projetos_all =  projeto.objects.all().order_by('id')
+    projetos_all =  projeto.objects.all()
 
     context = {
     'projetos':projetos_all,

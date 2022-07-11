@@ -39,7 +39,7 @@ def Cadastrar_projeto(request):
 
 @login_required
 def todos_projetos(request):
-    projetos_all = projeto.objects.all().order_by('id')
+    projetos_all = projeto.objects.all().order_by('-id')
 
     queryset = request.GET.get('q')
     if queryset:
