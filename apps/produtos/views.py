@@ -41,10 +41,10 @@ def cadastrar_produto(request):
         if form.is_valid():
             form.save()
             messages.add_message(request, constants.SUCCESS, 'Produto cadastrado com sucesso!')
-            return redirect(request, 'admin')
+            return redirect('admin')
         else:
             messages.add_message(request, constants.ERROR, 'Erro ao cadastrar produto!')
-            return redirect(request, 'admin')
+            return redirect('admin')
     context = {
         'form':form
     }
